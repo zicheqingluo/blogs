@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>打造自己的vim golang IDE | 子车轻罗的博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/assets/icon/favicon.ico">
+    <link rel="manifest" href="/assets/config/manifest.json">
+    <link rel="apple-touch-icon" href="/assets/icon/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/icon/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/seo-autopush.js"></script>
+    <script src="/sw.js"></script>
+    <meta name="description" content="使用vim进行go 开发">
+    <meta name="keywords" content="IDE go vim 开发工具">
+    <meta name="image" content="https://www.yangxiaokang.com/vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20220816103617118.png &quot;securecrt&quot;">
+    <meta name="twitter:title" content="打造自己的vim golang IDE">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.yangxiaokang.com/vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20220816103617118.png &quot;securecrt&quot;">
+    <meta name="twitter:url" content="https://www.yangxiaokang.com/article/toolplatform/vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="打造自己的vim golang IDE">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://www.yangxiaokang.com/vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20220816103617118.png &quot;securecrt&quot;">
+    <meta property="og:url" content="https://www.yangxiaokang.com/article/toolplatform/vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.html">
+    <meta property="og:site_name" content="zicheqingluo">
+    <meta property="article:published_time" content="2020-3-1">
+    <meta property="article:tag" content="vim">
+    <meta itemprop="name" content="打造自己的vim golang IDE">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://www.yangxiaokang.com/vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20220816103617118.png &quot;securecrt&quot;">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="codeva-I7UsJ4rszu">
+    <meta name="bytedance-verification-code" content="vR4ookjymMy2w/hg7MUk">
+    <meta name="360-site-verification" content="014dce242fa6f0fd87c64d5b1b0cb0de">
+    <meta name="sogou_site_verification" content="xcpMGDznMD">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/assets/icon/mstile-150x150.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    
+    <link rel="preload" href="/assets/css/0.styles.a2f6d36e.css" as="style"><link rel="preload" href="/assets/js/app.c516a478.js" as="script"><link rel="preload" href="/assets/js/3.d21cc566.js" as="script"><link rel="preload" href="/assets/js/1.807d4df7.js" as="script"><link rel="preload" href="/assets/js/21.e8a448ff.js" as="script"><link rel="preload" href="/assets/js/10.f8c38d70.js" as="script"><link rel="prefetch" href="/assets/js/11.3bf8ec0c.js"><link rel="prefetch" href="/assets/js/12.8d314908.js"><link rel="prefetch" href="/assets/js/13.539ad48f.js"><link rel="prefetch" href="/assets/js/14.a30813f1.js"><link rel="prefetch" href="/assets/js/15.ce60349b.js"><link rel="prefetch" href="/assets/js/16.a1bb5665.js"><link rel="prefetch" href="/assets/js/17.6d3166b2.js"><link rel="prefetch" href="/assets/js/18.64d34d52.js"><link rel="prefetch" href="/assets/js/19.f83ba1c8.js"><link rel="prefetch" href="/assets/js/20.72d8d5c1.js"><link rel="prefetch" href="/assets/js/22.5f38608b.js"><link rel="prefetch" href="/assets/js/23.76d928aa.js"><link rel="prefetch" href="/assets/js/24.0d99c688.js"><link rel="prefetch" href="/assets/js/25.228e8c90.js"><link rel="prefetch" href="/assets/js/26.15f5f77c.js"><link rel="prefetch" href="/assets/js/27.261c57c1.js"><link rel="prefetch" href="/assets/js/28.2d96e58e.js"><link rel="prefetch" href="/assets/js/29.a8251679.js"><link rel="prefetch" href="/assets/js/30.b3bf585c.js"><link rel="prefetch" href="/assets/js/31.359f8654.js"><link rel="prefetch" href="/assets/js/32.fe9f750c.js"><link rel="prefetch" href="/assets/js/33.84124d91.js"><link rel="prefetch" href="/assets/js/34.18d32599.js"><link rel="prefetch" href="/assets/js/35.66533356.js"><link rel="prefetch" href="/assets/js/36.fc960d86.js"><link rel="prefetch" href="/assets/js/37.5d8f4343.js"><link rel="prefetch" href="/assets/js/38.7ba3f21c.js"><link rel="prefetch" href="/assets/js/39.af335331.js"><link rel="prefetch" href="/assets/js/4.5c65e49a.js"><link rel="prefetch" href="/assets/js/40.1345403c.js"><link rel="prefetch" href="/assets/js/41.738118f4.js"><link rel="prefetch" href="/assets/js/42.df003207.js"><link rel="prefetch" href="/assets/js/43.74a87565.js"><link rel="prefetch" href="/assets/js/5.24fbdf1e.js"><link rel="prefetch" href="/assets/js/6.c877502a.js"><link rel="prefetch" href="/assets/js/7.f17ebff6.js"><link rel="prefetch" href="/assets/js/8.3e606a82.js"><link rel="prefetch" href="/assets/js/9.50a6a573.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.a2f6d36e.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-01e1a3d6><div data-v-01e1a3d6><div class="password-shadow password-wrapper-out" style="display:none;" data-v-6b44dbf6 data-v-01e1a3d6 data-v-01e1a3d6><h3 class="title" data-v-6b44dbf6>子车轻罗的博客</h3> <p class="description" data-v-6b44dbf6>龙蛇之变，木雁之间</p> <label id="box" class="inputBox" data-v-6b44dbf6><input type="password" value="" data-v-6b44dbf6> <span data-v-6b44dbf6>Konck! Knock!</span> <button data-v-6b44dbf6>OK</button></label> <div class="footer" data-v-6b44dbf6><span data-v-6b44dbf6><i class="iconfont reco-theme" data-v-6b44dbf6></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-6b44dbf6>vuePress-theme-reco</a></span> <span data-v-6b44dbf6><i class="iconfont reco-copyright" data-v-6b44dbf6></i> <a data-v-6b44dbf6><span data-v-6b44dbf6>子车轻罗</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-01e1a3d6><header class="navbar" data-v-01e1a3d6><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/加菲猫.jpeg" alt="子车轻罗的博客" class="logo"> <span class="site-name">子车轻罗的博客</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/go/" class="nav-link"><i class="undefined"></i>
+  go
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/平台/" class="nav-link"><i class="undefined"></i>
+  工具/平台
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      子车轻罗 的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-01e1a3d6></div> <aside class="sidebar" data-v-01e1a3d6><div class="personal-info-wrapper" data-v-7b7316c7 data-v-01e1a3d6><img src="/author.jpeg" alt="author-avatar" class="personal-img" data-v-7b7316c7> <h3 class="name" data-v-7b7316c7>
+    子车轻罗
+  </h3> <div class="num" data-v-7b7316c7><div data-v-7b7316c7><h3 data-v-7b7316c7>30</h3> <h6 data-v-7b7316c7>文章</h6></div> <div data-v-7b7316c7><h3 data-v-7b7316c7>15</h3> <h6 data-v-7b7316c7>标签</h6></div></div> <ul class="social-links" data-v-7b7316c7></ul> <hr data-v-7b7316c7></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/go/" class="nav-link"><i class="undefined"></i>
+  go
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/平台/" class="nav-link"><i class="undefined"></i>
+  工具/平台
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      子车轻罗 的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/article/toolplatform/blog.html" class="sidebar-link">低成本搭建个人博客🔥</a></li><li><a href="/article/toolplatform/vim-go-ide.html" aria-current="page" class="active sidebar-link">打造自己的vim golang IDE</a></li><li><a href="/article/toolplatform/vscode-fe.html" class="sidebar-link">vscode vue插件</a></li><li><a href="/article/toolplatform/go-dev-ide.html" class="sidebar-link">go 开发环境配置</a></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-6b44dbf6 data-v-01e1a3d6><h3 class="title" data-v-6b44dbf6>打造自己的vim golang IDE</h3> <!----> <label id="box" class="inputBox" data-v-6b44dbf6><input type="password" value="" data-v-6b44dbf6> <span data-v-6b44dbf6>Konck! Knock!</span> <button data-v-6b44dbf6>OK</button></label> <div class="footer" data-v-6b44dbf6><span data-v-6b44dbf6><i class="iconfont reco-theme" data-v-6b44dbf6></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-6b44dbf6>vuePress-theme-reco</a></span> <span data-v-6b44dbf6><i class="iconfont reco-copyright" data-v-6b44dbf6></i> <a data-v-6b44dbf6><span data-v-6b44dbf6>子车轻罗</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-01e1a3d6><div data-v-01e1a3d6><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">打造自己的vim golang IDE</h1> <div data-v-d70b6e8c><i class="iconfont reco-account" data-v-d70b6e8c><span data-v-d70b6e8c>子车轻罗</span></i> <i class="iconfont reco-date" data-v-d70b6e8c><span data-v-d70b6e8c>2020/3/1</span></i> <!----> <i class="tags iconfont reco-tag" data-v-d70b6e8c><span class="tag-item" data-v-d70b6e8c>vim</span><span class="tag-item" data-v-d70b6e8c>go</span><span class="tag-item" data-v-d70b6e8c>IDE</span></i></div></div> <div class="theme-reco-content content__default"><marquee><div id="boxx" data-v-3cb14dce><div data-v-3cb14dce><p v-if="true" class="custom-block-title" data-v-3cb14dce></p> <p v-if="true" data-v-3cb14dce></p></div></div></marquee> <h3 id="前提条件"><a href="#前提条件" class="header-anchor">#</a> 前提条件</h3> <p>vim版本在8.1以上(ubuntu 20可以直接执行)，centos需要升级vim版本</p> <h5 id="centos配置"><a href="#centos配置" class="header-anchor">#</a> centos配置</h5> <p>1、编译安装vim</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment">#配置python3，ycm默认只支持python3.6+</span>
+yum <span class="token parameter variable">-y</span> <span class="token function">install</span> python3 python3-devel
+<span class="token function">git</span> clone https://github.com/VundleVim/Vundle.vim.git
+
+./configure --enable-python3interp<span class="token operator">=</span>yes
+
+<span class="token function">make</span> <span class="token operator">&amp;&amp;</span> <span class="token function">make</span> <span class="token function">install</span>
+如果没有提示ycm必须在python3.6以上版本运行则表示没有问题，如果提示表示vim编译时没有读到python3，大概率时安装python3有问题
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>其他步骤相同,以上完成基本设置</p> <h3 id="一、安装vundle"><a href="#一、安装vundle" class="header-anchor">#</a> 一、安装vundle</h3> <ol><li>方式一</li></ol> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">mkdir</span> <span class="token parameter variable">-p</span> ~/.vim/bundle
+<span class="token builtin class-name">cd</span> ~/.vim/bundle
+<span class="token function">git</span> clone https://github.com/VundleVim/Vundle.vim.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p><code>vim ~/.vimrc</code></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token builtin class-name">set</span> nocompatible
+filetype off
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">rtp</span><span class="token operator">+=</span>~/.vim/bundle/Vundle.vim
+call vundle<span class="token comment">#begin()</span>
+Plugin <span class="token string">'gmarik/Vundle.vim'</span>
+call vundle<span class="token comment">#end()</span>
+filetype plugin indent on
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>保存退出</p> <ol start="2"><li><p>方式二</p> <p><a href="https://learnku.com/articles/24924?order_by=vote_count&amp;" target="_blank" rel="nofollow noopener noreferrer">另一种配置方式，未测试，感兴趣的可以试试那种更方便<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li></ol> <h3 id="二、安装vim-go"><a href="#二、安装vim-go" class="header-anchor">#</a> 二、安装vim-go</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token builtin class-name">cd</span> ~/.vim/bundle
+<span class="token function">git</span> clone https://github.com/fatih/vim-go.git
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><code>vim ~/.vimrc</code></p> <p>在call vundle#begin()和call vundle#end()之间再添加如下配置：</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>Plugin <span class="token string">'fatih/vim-go'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>保存后，重新打开 vim 编辑器，在命令行的模式输入：<strong>PluginInstall</strong>,回车</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">vim</span> ~/.vimrc
+:PluginInstall
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>安装完成后左下角会显示DONE</p> <p>理论上在此完成后+安装gocode就可以通过crtl+o+x进行补全。</p> <h3 id="三、安装-go-tools-binaries"><a href="#三、安装-go-tools-binaries" class="header-anchor">#</a> 三、安装 go.tools Binaries</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">vim</span> ~/.vimrc
+:GoInstallBinaries
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>由于有些命令文件是无法自动安装完成，这就需要手动进行安装啦。首先对比目录，看缺少哪些命令没有安装完成，然后去gitHub上搜索，找到对应的命令源码之后，使用git clone 下载到本地，然后使用 go install命令进行安装即可。前面已经讲解过如何安装啦，这里就不再赘述。</p> <p>相关工具的gitHub路径：</p> <p>golint: <strong>https://github.com/golang/lint.git</strong></p> <p>gocode: <strong>https://github.com/nsf/gocode.git</strong></p> <p>errcheck: <strong>https://github.com/kisielk/errcheck.git</strong></p> <p>gotags: <strong>https://github.com/jstemmer/gotags.git</strong></p> <p>实测基本只有gocode没下载成功，需要手动下。gocode用来代码补全，实际目前已经可以手动补全，但是没有出现补全。</p> <h3 id="四、安装ycm"><a href="#四、安装ycm" class="header-anchor">#</a> 四、安装ycm</h3> <p><strong>安装ycm是为了获取实时自动补全，像ide那样。</strong></p> <hr> <ol><li>安装cmake gcc g++</li></ol> <p><code>sudo apt-get install cmake gcc g++</code></p> <p>没有g++会有以下报错</p> <p><code>Tell CMake where to find the compiler by setting either the environment variable &quot;CXX&quot; or the CMake cache entry CMAKE_CXX_COMPILER to the full path to the compiler, or to the compiler name if it is in the PATH.</code></p> <ol start="2"><li>安装python dev，视py版本而定</li></ol> <p>没有python dev会有以下报错：</p> <p><code>ERROR: Python headers are missing in /usr/include/python3.8</code></p> <p><strong>解决</strong></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token comment"># sudo apt-get install python3-dev</span>
+
+<span class="token comment">#如果是centos</span>
+<span class="token comment"># 安装EPEL源</span>
+yum <span class="token function">install</span> epel-release <span class="token parameter variable">-y</span>
+<span class="token comment"># 安装python3开发包，具体看python版本，如果是3.6则</span>
+yum <span class="token function">install</span> python36-devel <span class="token parameter variable">-y</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><ol start="3"><li>获取YCM代码</li></ol> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token builtin class-name">cd</span> ~/.vim/bundle
+因为ycm 全部下载有200多M，github很慢，失败率极高，建议用脚本慢慢下,或者通过国内镜像网站
+<span class="token comment">#!/bin/bash</span>
+
+<span class="token keyword">while</span> <span class="token boolean">true</span>
+<span class="token keyword">do</span>
+<span class="token function">git</span> clone <span class="token parameter variable">--recursive</span> https://github.com/Valloric/YouCompleteMe.git
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> <span class="token parameter variable">-ne</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span><span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> 下载失败
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span> 下载成功
+    <span class="token builtin class-name">exit</span> <span class="token number">0</span>
+<span class="token keyword">fi</span>
+<span class="token keyword">done</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><ol start="4"><li>编辑.vimrc</li></ol> <div class="language- line-numbers-mode"><pre class="language-text"><code>call vundle#rc()
+Plugin 'Valloric/YouCompleteMe'
+filetype plugin indent on     &quot; required!
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p><em>在</em>*.<strong>vimrc</strong>中添加如下内容**，位置在* <em>call vundle#begin()</em> <em>和</em> <em>call vundle#end()</em> <em>之间。</em></p> <p><code>Bundle 'Valloric/YouCompleteMe'</code> 或<code>Plugin 'Valloric/YouCompleteMe'</code></p> <ol start="5"><li>安装ycm</li></ol> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">vim</span> ~/.vimrc
+:BundleInstall
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><ol start="6"><li>安装golang自动补全</li></ol> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>./install.py --gocode-completer
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><h3 id="五、配置vim颜色"><a href="#五、配置vim颜色" class="header-anchor">#</a> 五、配置vim颜色</h3> <p><em>新老方案建议选择新方案</em></p> <h4 id="👉最新配色方案😊"><a href="#👉最新配色方案😊" class="header-anchor">#</a> 👉<strong>最新配色方案</strong>😊</h4> <p>前提条件：<strong>securecrt 9.x版本</strong></p> <ol><li><p>下载主题</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token builtin class-name">cd</span> ~/.vim
+<span class="token function">git</span> clone https://gitee.com/wu_mang/vim-one.git
+<span class="token function">mkdir</span> ~/.vim/colors
+<span class="token function">cp</span> vim-one/colors/one.vim colors/
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div></li> <li><p>配置.vimrc</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">vim</span> .vimrc
+<span class="token string">&quot;配色开关
+syntax on
+&quot;</span> 开启24bit的颜色，开启这个颜色会更漂亮一些，真彩色
+<span class="token builtin class-name">set</span> termguicolors
+<span class="token string">&quot; 配色方案, 可以从上面插件安装中的选择一个使用
+
+
+colorscheme one&quot;</span> 选择”one“主题
+<span class="token builtin class-name">let</span> g:airline_theme<span class="token operator">=</span><span class="token string">'one'</span>
+<span class="token builtin class-name">let</span> g:one_allow_italics <span class="token operator">=</span> <span class="token number">1</span> 
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">background</span><span class="token operator">=</span>dark <span class="token string">&quot; 主题背景 dark-深色; light-浅色
+&quot;</span>设置颜色
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">t_Co</span><span class="token operator">=</span><span class="token number">256</span>
+<span class="token builtin class-name">let</span> g:rehash256 <span class="token operator">=</span> <span class="token number">1</span> 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div></li> <li><p>修改环境变量</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">vim</span> ~/.bash_profile 
+ <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">TERM</span></span><span class="token operator">=</span>xterm-color
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div></li> <li><p>配置securecrt</p> <p>Options-session-options-terminal-Emulation</p> <p><img src="vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20220816103617118.png" alt="True Color" title="securecrt"></p> <p>Options-session-options-Appearance</p> <p><img src="vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20220816103657493.png" alt="chalkboard" title="修改scheme"></p></li></ol> <h4 id="👉老配色方案😊"><a href="#👉老配色方案😊" class="header-anchor">#</a> 👉<strong>老配色方案</strong>😊</h4> <p>1、下载主题</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token builtin class-name">cd</span> ~/.vim
+<span class="token function">git</span> clone https://github.com/tomasr/molokai.git
+<span class="token function">mkdir</span> ~/.vim/colors
+<span class="token function">cp</span> molokai/colors/molokai.vim ~/.vim/colors
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>2、配置.vimrc</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">vim</span> ~/.vimrc
+syntax on
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">t_Co</span><span class="token operator">=</span><span class="token number">256</span>
+colorscheme molokai
+<span class="token builtin class-name">let</span> g:molokai_original <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:rehash256 <span class="token operator">=</span> <span class="token number">1</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>3、修改环境变量</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code> ~/.bash_profile 
+ <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">TERM</span></span><span class="token operator">=</span>xterm-color
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>4、secure_crt设置</p> <p><img src="vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20200901155218778.png" alt="scheme:Dark Cyan"></p> <p><img src="vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20200901155230763.png" alt="Terminal: ANSI Color"></p> <h3 id="六、插件"><a href="#六、插件" class="header-anchor">#</a> 六、插件</h3> <blockquote><p>理论上以上配置可以进行go开发工作了，但如果要把vim打造成一个IDE呢？</p> <p>那就继续配置吧！</p></blockquote> <ol><li>nerdtree 目录树</li></ol> <p>按F7 打开/关闭目录树(快捷键自己随便定义)</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>Vim ~/.vimrc
+call vundle<span class="token comment">#begin()</span>
+
+Plugin <span class="token string">'scrooloose/nerdtree'</span>
+
+call vundle<span class="token comment">#end()</span>
+<span class="token comment">#安装目录树插件映射，F7打开/关闭目录树</span>
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">7</span>&gt;</span> :NERDTreeMirror<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">7</span>&gt;</span> :NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>执行:PluginInstall</p> <ol start="2"><li>缩略图tagbar</li></ol> <p>效果类似是vscode右侧缩小显示</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>Vim ~/.vimrc
+call vundle<span class="token comment">#begin()</span>
+
+Plugin <span class="token string">'majutsushi/tagbar'</span>
+
+call vundle<span class="token comment">#end()</span>
+<span class="token comment">#安装目录树插件映射，F8打开/关闭缩略图</span>
+nmap <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">8</span>&gt;</span> :TagbarToggle<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>执行:PluginInstall</p> <ol start="3"><li>函数跳转</li></ol> <p>光标在某变量或函数上，输入gd跳转。ctrl+o返回</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>yum <span class="token parameter variable">-y</span> <span class="token function">install</span> ctags
+go get <span class="token parameter variable">-u</span> github.com/jstemmer/gotags
+<span class="token function">vim</span> ~/.vimrc //添加如下内容,需要删除空行
+<span class="token builtin class-name">let</span> g:tagbar_type_go <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">\</span> <span class="token string">'ctagstype'</span> <span class="token builtin class-name">:</span> <span class="token string">'go'</span>,
+    <span class="token punctuation">\</span> <span class="token string">'kinds'</span>     <span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">\</span> <span class="token string">'p:package'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'i:imports:1'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'c:constants'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'v:variables'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'t:types'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'n:interfaces'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'w:fields'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'e:embedded'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'m:methods'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'r:constructor'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'f:functions'</span>
+    <span class="token punctuation">\</span> <span class="token punctuation">]</span>,
+    <span class="token punctuation">\</span> <span class="token string">'sro'</span> <span class="token builtin class-name">:</span> <span class="token string">'.'</span>,
+    <span class="token punctuation">\</span> <span class="token string">'kind2scope'</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">\</span> <span class="token string">'t'</span> <span class="token builtin class-name">:</span> <span class="token string">'ctype'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'n'</span> <span class="token builtin class-name">:</span> <span class="token string">'ntype'</span>
+    <span class="token punctuation">\</span> <span class="token punctuation">}</span>,
+    <span class="token punctuation">\</span> <span class="token string">'scope2kind'</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">\</span> <span class="token string">'ctype'</span> <span class="token builtin class-name">:</span> <span class="token string">'t'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'ntype'</span> <span class="token builtin class-name">:</span> <span class="token string">'n'</span>
+    <span class="token punctuation">\</span> <span class="token punctuation">}</span>,
+    <span class="token punctuation">\</span> <span class="token string">'ctagsbin'</span>  <span class="token builtin class-name">:</span> <span class="token string">'gotags'</span>,
+    <span class="token punctuation">\</span> <span class="token string">'ctagsargs'</span> <span class="token builtin class-name">:</span> <span class="token string">'-sort -silent'</span>
+<span class="token punctuation">\</span> <span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><ol start="4"><li>成对符号补全</li></ol> <p>比如() [] {}</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>Vim ~/.vimrc
+call vundle<span class="token comment">#begin()</span>
+
+Plugin <span class="token string">'Raimondi/delimitMate'</span>
+或Plugin <span class="token string">'jiangmiao/auto-pairs'</span>
+
+call vundle<span class="token comment">#end()</span>
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>执行:PluginInstall</p> <p>另一种方式，优点是{}会自动空行,两者可以结合使用效果如下</p> <p><img src="vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20200929192007862.png" alt="image-20200929192007862"></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>Vim ~/.vimrc
+inoremap <span class="token string">' '</span>'<span class="token operator">&lt;</span>ESC<span class="token operator">&gt;</span>i
+inoremap <span class="token string">&quot; &quot;</span>&quot;<span class="token operator">&lt;</span>ESC<span class="token operator">&gt;</span>i
+inoremap <span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>ESC<span class="token operator">&gt;</span>i
+inoremap <span class="token punctuation">[</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token operator">&lt;</span>ESC<span class="token operator">&gt;</span>i
+inoremap <span class="token punctuation">{</span> <span class="token punctuation">{</span><span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span><span class="token punctuation">}</span><span class="token operator">&lt;</span>ESC<span class="token operator">&gt;</span>O
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><strong>缺点是，换行可能会造成vim崩溃</strong></p> <ol start="5"><li>添加头部注释</li></ol> <p>需要自己定义模板文件，并且总是出现vim-go自动添加的package等信息下面</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>Plugin <span class="token string">'aperezdc/vim-template'</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>执行:PluginInstall</p> <p>模板信息</p> <div class="language-yaml line-numbers-mode"><pre class="language-yaml"><code>vim ~/.vim/bundle/vim<span class="token punctuation">-</span>template/templates
+/*
+@Time <span class="token punctuation">:</span> %YEAR%/%MONTH%/%DAY% 
+@Author <span class="token punctuation">:</span> zicheqingluo
+@File <span class="token punctuation">:</span> %FFILE%
+<span class="token important">*/</span>
+
+<span class="token directive important">%HERE%</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><ol start="6"><li>高亮单词 mark.vim</li></ol> <p><a href="https://www.vim.org/scripts/script.php?script_id=2666" target="_blank" rel="nofollow noopener noreferrer">下载解压1<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <p><a href="https://www.vim.org/scripts/script.php?script_id=4433" target="_blank" rel="nofollow noopener noreferrer">下载解压2<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token number">1</span>、两个压缩包都执行以下操作：
+<span class="token function">gzip</span> <span class="token parameter variable">-d</span> mark.xxx.gz
+<span class="token function">vim</span> 打开解压后的文件
+输入 :so %
+<span class="token number">2</span>、添加快捷键
+<span class="token function">vim</span> ~/.vimrc
+nmap ml <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSet <span class="token comment">#高亮或反高亮一个单词  </span>
+nmap md <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkClear
+nmap mn <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSearchAnyNext <span class="token comment">#跳转到任一下一个高亮单词  </span>
+nmap mp <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSearchAnyPrev
+nmap mf <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSearchCurrentNext <span class="token comment">#跳转到当前高亮的下一个单词  </span>
+nmap mb <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSearchCurrentPrev 
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><ol start="7"><li>安装ACK 全局查找</li></ol> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code>yum <span class="token function">install</span> epel-release <span class="token parameter variable">-y</span>
+yum <span class="token function">install</span> ack <span class="token parameter variable">-y</span>
+<span class="token function">vim</span> ~/.vimrc
+call vundle<span class="token comment">#begin()</span>
+Plugin <span class="token string">'mileszs/ack.vim'</span>
+call vundle<span class="token comment">#end()</span>
+保存退出
+执行vim
+执行PluginInstall
+<span class="token function">vim</span> ~/.vimrc
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">4</span>&gt;</span> :Ack<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+报存退出，光标在函数或变量上F4即可。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><ol start="8"><li>配置代码折叠</li></ol> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">vim</span> ~/.vimrc
+<span class="token string">&quot; 代码折叠
+set fdm=indent
+&quot;</span> vim-go 代码折叠解决保存不显示折叠问题
+<span class="token builtin class-name">let</span> g:go_fmt_experimental <span class="token operator">=</span> <span class="token number">1</span> 
+&quot; 映射到快捷键
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">3</span>&gt;</span> zc<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">4</span>&gt;</span> zo<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>选取了折叠方式后，我们就可以对某些代码实施我们需要的折叠了，由于我使用indent和marker稍微多一些，故以它们的使用为例：如果使用了indent方式，vim会自动的对大括号的中间部分进行折叠，我们可以直接使用这些现成的折叠成果。</p> <p>在可折叠处（大括号中间）：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>zc      折叠
+zC     对所在范围内所有嵌套的折叠点进行折叠
+zo      展开折叠
+zO     对所在范围内所有嵌套的折叠点展开
+[z       到当前打开的折叠的开始处。
+]z       到当前打开的折叠的末尾处。
+zj       向下移动。到达下一个折叠的开始处。关闭的折叠也被计入。
+zk      向上移动到前一折叠的结束处。关闭的折叠也被计入。
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><ol start="9"><li><p>辅助插件</p> <div class="language- line-numbers-mode"><pre class="language-text"><code> &quot;解决nerdtree不共享问题
+ Plugin 'jistr/vim-nerdtree-tabs'
+ 
+ &quot;代码补全提示
+  Plugin 'Shougo/neocomplcache.vim'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div></li></ol> <h3 id="七、个性化配置"><a href="#七、个性化配置" class="header-anchor">#</a> 七、个性化配置</h3> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token function">vim</span> ~/.vimrc
+
+<span class="token string">&quot;--------------------------------额外的配置
+&quot;</span>自动缩进
+<span class="token builtin class-name">set</span> autoindent
+<span class="token string">&quot;显示行号
+set number
+&quot;</span>暂时没用到
+<span class="token string">&quot;let g:go_disable_autoinstall = 0
+&quot;</span>解决使用自动缩进后退格键不能使用的问题
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">backspace</span><span class="token operator">=</span>indent,eol,start
+<span class="token string">&quot;tab宽度
+set ts=4
+&quot;</span>把插入的tab换成空格，解决python问题
+<span class="token builtin class-name">set</span> expandtab
+<span class="token string">&quot;自动缩进时,缩进长度为4
+set shiftwidth=4
+&quot;</span>手动tab缩进时，保持和shiftwidth长度一致
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">softtabstop</span><span class="token operator">=</span>-1
+<span class="token string">&quot;关闭预览窗口
+set completeopt-=preview
+
+&quot;</span>//在系统启动时候启动neocomplcache 代码补全
+<span class="token builtin class-name">let</span> g:neocomplcache_enable_at_startup <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token string">&quot;//提示的时候选择第一个
+let g:neocomplcache_enable_auto_select = 1
+
+
+&quot;</span>go语言 配置
+<span class="token builtin class-name">let</span> g:go_highlight_functions <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_highlight_methods <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_highlight_structs <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_highlight_operators <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_highlight_build_constraints <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_fmt_command <span class="token operator">=</span> <span class="token string">&quot;goimports&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br></div></div><h3 id="八、问题排查"><a href="#八、问题排查" class="header-anchor">#</a> 八、问题排查</h3> <ul><li><p>vundle安装插件报错，如图：</p> <p><img src="vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20230307162810750.png" alt="vundle安装插件报错"></p></li></ul> <p><strong>报错原因</strong></p> <p>这其中，有 Vundle 版本的差别，旧版配置：vundle#rc()、Bundle。 新版配置：vundle#begin()、Plugin。</p> <h3 id="附录"><a href="#附录" class="header-anchor">#</a> 附录</h3> <p>.vimrc完整配置,包括上面所有配置+修改tab为4个空格等兼容设置</p> <div class="language-shell line-numbers-mode"><pre class="language-shell"><code><span class="token string">&quot;配置vundle
+set nocompatible
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+&quot;</span>自动识别文件类型、用文件类型plugin脚本、使用缩进定义文件
+filetype plugin indent on 
+
+
+
+<span class="token string">&quot; YCM配置
+&quot;</span>call vundle<span class="token comment">#rc()</span>
+filetype plugin indent on     <span class="token string">&quot; required!
+let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+
+
+&quot;</span>vim插件----------------------------------------
+
+call vundle<span class="token comment">#begin()</span>
+
+<span class="token string">&quot;vim bundle管理
+&quot;</span>Plugin <span class="token string">'gmarik/Vundle.vim'</span>
+
+<span class="token string">&quot;vim go插件
+Plugin 'fatih/vim-go'
+
+&quot;</span>ycm 
+Plugin <span class="token string">'Valloric/YouCompleteMe'</span>
+
+<span class="token string">&quot;nerdtree 目录树
+Plugin 'scrooloose/nerdtree'
+
+&quot;</span>缩略图 类似vscode右边那栏
+Plugin <span class="token string">'majutsushi/tagbar'</span>
+
+<span class="token string">&quot;成对符号补全
+Plugin 'Raimondi/delimitMate'
+
+&quot;</span>代码模板
+Plugin <span class="token string">'aperezdc/vim-template'</span>
+
+<span class="token string">&quot;ACK全文搜索
+Plugin 'mileszs/ack.vim'
+
+&quot;</span>解决nerdtree不共享问题
+Plugin <span class="token string">'jistr/vim-nerdtree-tabs'</span> 
+
+<span class="token string">&quot;代码补全提示
+Plugin 'Shougo/neocomplcache.vim'
+
+&quot;</span>代码主题配色
+Plugin <span class="token string">'morhetz/gruvbox'</span>
+
+<span class="token string">&quot; colorscheme one 配色主题
+Plugin 'rakr/vim-one'
+&quot;</span>其他主题
+<span class="token string">&quot; colorscheme neodark
+&quot;</span>&quot;Plugin <span class="token string">'KeitaNakamura/neodark.vim'</span>
+<span class="token string">&quot; colorscheme monokai
+&quot;</span>&quot;Plugin <span class="token string">'crusoexia/vim-monokai'</span>
+<span class="token string">&quot; colorscheme github:PluginInstall
+&quot;</span>&quot;Plugin <span class="token string">'acarapetis/vim-colors-github'</span>
+
+call vundle<span class="token comment">#end()</span>
+
+<span class="token string">&quot;开启颜色
+syntax on
+&quot;</span> 开启24bit的颜色，开启这个颜色会更漂亮一些
+<span class="token builtin class-name">set</span> termguicolors
+<span class="token string">&quot; 配色方案, 可以从上面插件安装中的选择一个使用
+colorscheme one
+let g:airline_theme='one'
+let g:one_allow_italics = 1
+set background=dark &quot;</span> 主题背景 dark-深色<span class="token punctuation">;</span> light-浅色
+
+<span class="token string">&quot;设置颜色
+set t_Co=256
+let g:rehash256 = 1
+
+&quot;</span>ACK全文搜索
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">5</span>&gt;</span> :Ack<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+<span class="token string">&quot;go import
+map &lt;F6&gt; :GoImports&lt;CR&gt;
+
+&quot;</span>目录树快捷键映射
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">7</span>&gt;</span> :NERDTreeMirror<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">7</span>&gt;</span> :NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">&gt;</span>
+
+<span class="token string">&quot;缩略图快捷键
+nmap &lt;F8&gt; :TagbarToggle&lt;CR&gt;
+
+&quot;</span>高亮单词
+nmap ml <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSet 
+nmap md <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkClear
+nmap mn <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSearchAnyNext 
+nmap mp <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSearchAnyPrev
+nmap mf <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSearchCurrentNext
+nmap mb <span class="token operator">&lt;</span>Plug<span class="token operator">&gt;</span>MarkSearchCurrentPrev 
+
+<span class="token string">&quot;代码折叠,开启后默认折叠
+&quot;</span><span class="token builtin class-name">set</span> <span class="token assign-left variable">fdm</span><span class="token operator">=</span>indent
+<span class="token string">&quot; vim-go 代码折叠解决保存不显示折叠问题
+&quot;</span><span class="token builtin class-name">let</span> g:go_fmt_experimental <span class="token operator">=</span> <span class="token number">1</span> 
+<span class="token string">&quot; 映射到快捷键
+map &lt;F3&gt; zc&lt;CR&gt;
+map &lt;F4&gt; zo&lt;CR&gt;
+
+
+
+&quot;</span>函数跳转
+<span class="token builtin class-name">let</span> g:tagbar_type_go <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">\</span> <span class="token string">'ctagstype'</span> <span class="token builtin class-name">:</span> <span class="token string">'go'</span>,
+    <span class="token punctuation">\</span> <span class="token string">'kinds'</span>     <span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">\</span> <span class="token string">'p:package'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'i:imports:1'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'c:constants'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'v:variables'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'t:types'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'n:interfaces'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'w:fields'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'e:embedded'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'m:methods'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'r:constructor'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'f:functions'</span>
+    <span class="token punctuation">\</span> <span class="token punctuation">]</span>,
+    <span class="token punctuation">\</span> <span class="token string">'sro'</span> <span class="token builtin class-name">:</span> <span class="token string">'.'</span>,
+    <span class="token punctuation">\</span> <span class="token string">'kind2scope'</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">\</span> <span class="token string">'t'</span> <span class="token builtin class-name">:</span> <span class="token string">'ctype'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'n'</span> <span class="token builtin class-name">:</span> <span class="token string">'ntype'</span>
+    <span class="token punctuation">\</span> <span class="token punctuation">}</span>,
+    <span class="token punctuation">\</span> <span class="token string">'scope2kind'</span> <span class="token builtin class-name">:</span> <span class="token punctuation">{</span>
+        <span class="token punctuation">\</span> <span class="token string">'ctype'</span> <span class="token builtin class-name">:</span> <span class="token string">'t'</span>,
+        <span class="token punctuation">\</span> <span class="token string">'ntype'</span> <span class="token builtin class-name">:</span> <span class="token string">'n'</span>
+    <span class="token punctuation">\</span> <span class="token punctuation">}</span>,
+    <span class="token punctuation">\</span> <span class="token string">'ctagsbin'</span>  <span class="token builtin class-name">:</span> <span class="token string">'gotags'</span>,
+    <span class="token punctuation">\</span> <span class="token string">'ctagsargs'</span> <span class="token builtin class-name">:</span> <span class="token string">'-sort -silent'</span>
+<span class="token punctuation">\</span> <span class="token punctuation">}</span>
+
+<span class="token string">&quot;--------------------------------额外的配置
+&quot;</span>自动缩进
+<span class="token builtin class-name">set</span> autoindent
+<span class="token string">&quot;显示行号
+set number
+&quot;</span>禁止自动下载
+<span class="token string">&quot;let g:go_disable_autoinstall = 0
+&quot;</span>解决使用自动缩进后退格键不能使用的问题
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">backspace</span><span class="token operator">=</span>indent,eol,start
+<span class="token string">&quot;tab宽度
+set ts=4
+&quot;</span>把插入的tab换成空格，解决python问题
+<span class="token builtin class-name">set</span> expandtab
+<span class="token string">&quot;自动缩进时,缩进长度为4
+set shiftwidth=4
+&quot;</span>手动tab缩进时，保持和shiftwidth长度一致
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">softtabstop</span><span class="token operator">=</span>-1
+<span class="token string">&quot;关闭预览窗口
+set completeopt-=preview
+
+&quot;</span>//在系统启动时候启动neocomplcache 代码补全
+<span class="token builtin class-name">let</span> g:neocomplcache_enable_at_startup <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token string">&quot;//提示的时候选择第一个
+let g:neocomplcache_enable_auto_select = 1
+
+
+&quot;</span>go语言 配置
+<span class="token builtin class-name">let</span> g:go_highlight_functions <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_highlight_methods <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_highlight_structs <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_highlight_operators <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_highlight_build_constraints <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:go_fmt_command <span class="token operator">=</span> <span class="token string">&quot;goimports&quot;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br><span class="line-number">102</span><br><span class="line-number">103</span><br><span class="line-number">104</span><br><span class="line-number">105</span><br><span class="line-number">106</span><br><span class="line-number">107</span><br><span class="line-number">108</span><br><span class="line-number">109</span><br><span class="line-number">110</span><br><span class="line-number">111</span><br><span class="line-number">112</span><br><span class="line-number">113</span><br><span class="line-number">114</span><br><span class="line-number">115</span><br><span class="line-number">116</span><br><span class="line-number">117</span><br><span class="line-number">118</span><br><span class="line-number">119</span><br><span class="line-number">120</span><br><span class="line-number">121</span><br><span class="line-number">122</span><br><span class="line-number">123</span><br><span class="line-number">124</span><br><span class="line-number">125</span><br><span class="line-number">126</span><br><span class="line-number">127</span><br><span class="line-number">128</span><br><span class="line-number">129</span><br><span class="line-number">130</span><br><span class="line-number">131</span><br><span class="line-number">132</span><br><span class="line-number">133</span><br><span class="line-number">134</span><br><span class="line-number">135</span><br><span class="line-number">136</span><br><span class="line-number">137</span><br><span class="line-number">138</span><br><span class="line-number">139</span><br><span class="line-number">140</span><br><span class="line-number">141</span><br><span class="line-number">142</span><br><span class="line-number">143</span><br><span class="line-number">144</span><br><span class="line-number">145</span><br><span class="line-number">146</span><br><span class="line-number">147</span><br><span class="line-number">148</span><br><span class="line-number">149</span><br><span class="line-number">150</span><br><span class="line-number">151</span><br><span class="line-number">152</span><br><span class="line-number">153</span><br><span class="line-number">154</span><br><span class="line-number">155</span><br><span class="line-number">156</span><br><span class="line-number">157</span><br><span class="line-number">158</span><br><span class="line-number">159</span><br><span class="line-number">160</span><br><span class="line-number">161</span><br><span class="line-number">162</span><br><span class="line-number">163</span><br><span class="line-number">164</span><br><span class="line-number">165</span><br><span class="line-number">166</span><br><span class="line-number">167</span><br><span class="line-number">168</span><br><span class="line-number">169</span><br><span class="line-number">170</span><br></div></div><p>效果图</p> <p><img src="vim-go%E6%8F%92%E4%BB%B6%E9%85%8D%E7%BD%AE.assets/image-20230307190321884.png" alt="效果图"></p> <p>打出fmt.pr 自动提示，无需任何快捷键，没有ycm需要用快捷键crtl+o+x,不知为何没出提示，ycm安装好可自动补全。</p> <p>以上就是全部的配置了，如果有没讲到的实用配置，请在评论区留言！</p> <h3 id="参考"><a href="#参考" class="header-anchor">#</a> 参考</h3> <ul><li><p>[1]  <a href="https://studygolang.com/topics/7449?fr=sidebar" target="_blank" rel="nofollow noopener noreferrer">第一、二、三、五<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[2]  <a href="https://zhuanlan.zhihu.com/p/54074345" target="_blank" rel="nofollow noopener noreferrer">第四下载ycm，方法不通效果一样<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[3]  <a href="https://www.cnblogs.com/starrytales/p/6031671.html" target="_blank" rel="nofollow noopener noreferrer">第四,配置.vimrc<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[4]  <a href="https://blog.csdn.net/ChuiGeDaQiQiu/article/details/79126822" target="_blank" rel="nofollow noopener noreferrer">第四,安装ycm<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[5]  <a href="https://studygolang.com/articles/10420" target="_blank" rel="nofollow noopener noreferrer">另一种安装方法不同于ycm，未测试<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[6]  <a href="https://studygolang.com/articles/4777" target="_blank" rel="nofollow noopener noreferrer">插件安装参考<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[7]  <a href="https://learnku.com/articles/24924?order_by=vote_count&amp;" target="_blank" rel="nofollow noopener noreferrer">新版配色方案<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[8]  <a href="https://www.cnblogs.com/chjbbs/p/6510904.html" target="_blank" rel="nofollow noopener noreferrer">代码折叠<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[9]  <a href="https://blog.csdn.net/ziyou434/article/details/110792570" target="_blank" rel="nofollow noopener noreferrer">解决vim退格键失败<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li> <li><p>[10]  <a href="https://segmentfault.com/a/1190000021133524?utm_source=tag-newest" target="_blank" rel="nofollow noopener noreferrer">vim技巧：详解tabstop、softtabstop、expandtab三个选项的区别<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></li></ul></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">2023/3/9</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/article/toolplatform/blog.html" class="prev">
+          低成本搭建个人博客🔥
+        </a></span> <span class="next"><a href="/article/toolplatform/vscode-fe.html">
+          vscode vue插件
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-7b9ab47c data-v-01e1a3d6><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#前提条件" class="sidebar-link reco-side-前提条件" data-v-7b9ab47c>前提条件</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#一、安装vundle" class="sidebar-link reco-side-一、安装vundle" data-v-7b9ab47c>一、安装vundle</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#二、安装vim-go" class="sidebar-link reco-side-二、安装vim-go" data-v-7b9ab47c>二、安装vim-go</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#三、安装-go-tools-binaries" class="sidebar-link reco-side-三、安装-go-tools-binaries" data-v-7b9ab47c>三、安装 go.tools Binaries</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#四、安装ycm" class="sidebar-link reco-side-四、安装ycm" data-v-7b9ab47c>四、安装ycm</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#五、配置vim颜色" class="sidebar-link reco-side-五、配置vim颜色" data-v-7b9ab47c>五、配置vim颜色</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#六、插件" class="sidebar-link reco-side-六、插件" data-v-7b9ab47c>六、插件</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#七、个性化配置" class="sidebar-link reco-side-七、个性化配置" data-v-7b9ab47c>七、个性化配置</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#八、问题排查" class="sidebar-link reco-side-八、问题排查" data-v-7b9ab47c>八、问题排查</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#附录" class="sidebar-link reco-side-附录" data-v-7b9ab47c>附录</a></li><li class="level-3" data-v-7b9ab47c><a href="/article/toolplatform/vim-go-ide.html#参考" class="sidebar-link reco-side-参考" data-v-7b9ab47c>参考</a></li></ul></div></div></div><div class="global-ui"><div class="reco-bgm-panel" data-v-2940e5b8><audio id="bgm" src="/bgm/只爱西经-林一.mp3" data-v-2940e5b8></audio> <div class="reco-float-box" style="bottom:20px;z-index:999999;display:none;" data-v-2940e5b8 data-v-cc4d9216 data-v-2940e5b8><img src="https://img.18183.com/uploads/allimg/210927/379-21092GG645.jpg@!18183" data-v-2940e5b8></div> <div class="reco-bgm-box" style="left:10px;bottom:10px;z-index:999999;" data-v-2940e5b8 data-v-cc4d9216 data-v-2940e5b8><div class="reco-bgm-cover" style="background-image:url(https://img.18183.com/uploads/allimg/210927/379-21092GG645.jpg@!18183);" data-v-2940e5b8><div class="mini-operation" style="display:none;" data-v-2940e5b8><i class="reco-bgm reco-bgm-pause" style="display:none;" data-v-2940e5b8></i> <i class="reco-bgm reco-bgm-play" style="display:none;" data-v-2940e5b8></i></div> <div class="falut-message" style="display:none;" data-v-2940e5b8>
+          播放失败
+        </div></div> <div class="reco-bgm-info" data-v-2940e5b8 data-v-cc4d9216 data-v-2940e5b8><div class="info-box" data-v-2940e5b8><i class="reco-bgm reco-bgm-music music" data-v-2940e5b8></i>只爱西经</div> <div class="info-box" data-v-2940e5b8><i class="reco-bgm reco-bgm-artist" data-v-2940e5b8></i>林一</div> <div class="reco-bgm-progress" data-v-2940e5b8><div class="progress-bar" data-v-2940e5b8><div class="bar" data-v-2940e5b8></div></div></div> <div class="reco-bgm-operation" data-v-2940e5b8><i class="reco-bgm reco-bgm-last last" data-v-2940e5b8></i> <i class="reco-bgm reco-bgm-pause pause" style="display:none;" data-v-2940e5b8></i> <i class="reco-bgm reco-bgm-play play" data-v-2940e5b8></i> <i class="reco-bgm reco-bgm-next next" data-v-2940e5b8></i> <i class="reco-bgm reco-bgm-volume1 volume" data-v-2940e5b8></i> <i class="reco-bgm reco-bgm-mute mute" style="display:none;" data-v-2940e5b8></i> <div class="volume-bar" data-v-2940e5b8><div class="bar" data-v-2940e5b8></div></div></div></div> <div class="reco-bgm-left-box" data-v-2940e5b8 data-v-cc4d9216 data-v-2940e5b8><i class="reco-bgm reco-bgm-left" data-v-2940e5b8></i></div></div></div><div class="Sakura" data-v-650495c6><canvas id="canvas_sakura" style="z-index:-1;" data-v-650495c6></canvas></div><!----><div class="kanbanniang" data-v-ee8d62e6><div class="banniang-container" style="display:;" data-v-ee8d62e6><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-ee8d62e6>
+      欢迎来到 子车轻罗的博客
+    </div> <div class="operation" style="left:10px;bottom:65px;display:;" data-v-ee8d62e6><i class="kbnfont kbn-ban-home ban-home" data-v-ee8d62e6></i> <i class="kbnfont kbn-ban-message message" data-v-ee8d62e6></i> <i class="kbnfont kbn-ban-close close" data-v-ee8d62e6></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-ee8d62e6><i class="kbnfont kbn-ban-info info" data-v-ee8d62e6></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-ee8d62e6></i></div> <canvas id="banniang" width="150" height="300" class="live2d" style="left:70px;bottom:-20px;opacity:0.9;" data-v-ee8d62e6></canvas></div> <div class="showBanNiang" style="display:none;" data-v-ee8d62e6>
+    看板娘
+  </div></div><div id="goTop" class="hide-cat" data-v-a11242f6></div><!----></div></div>
+    <script src="/assets/js/app.c516a478.js" defer></script><script src="/assets/js/3.d21cc566.js" defer></script><script src="/assets/js/1.807d4df7.js" defer></script><script src="/assets/js/21.e8a448ff.js" defer></script><script src="/assets/js/10.f8c38d70.js" defer></script>
+  </body>
+</html>
