@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Go Study Day06 - 并发 | 子车轻罗的博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/assets/icon/favicon.ico">
+    <link rel="manifest" href="/assets/config/manifest.json">
+    <link rel="apple-touch-icon" href="/assets/icon/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/icon/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/seo-autopush.js"></script>
+    <script src="/sw.js"></script>
+    <meta name="description" content="从0学go 第6天 goroutine和channel select多路复用">
+    <meta name="keywords" content="自学 go goroutine channel select多路复用">
+    <meta name="image" content="https://www.yangxiaokang.com/day06-并发.assets/image-20230316115639836.png">
+    <meta name="twitter:title" content="Go Study Day06 - 并发">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.yangxiaokang.com/day06-并发.assets/image-20230316115639836.png">
+    <meta name="twitter:url" content="https://www.yangxiaokang.com/article/gostudy/day06-%E5%B9%B6%E5%8F%91.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Go Study Day06 - 并发">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://www.yangxiaokang.com/day06-并发.assets/image-20230316115639836.png">
+    <meta property="og:url" content="https://www.yangxiaokang.com/article/gostudy/day06-%E5%B9%B6%E5%8F%91.html">
+    <meta property="og:site_name" content="zicheqingluo">
+    <meta property="article:published_time" content="2019-8-03">
+    <meta property="article:tag" content="go">
+    <meta itemprop="name" content="Go Study Day06 - 并发">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://www.yangxiaokang.com/day06-并发.assets/image-20230316115639836.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="codeva-I7UsJ4rszu">
+    <meta name="bytedance-verification-code" content="vR4ookjymMy2w/hg7MUk">
+    <meta name="360-site-verification" content="014dce242fa6f0fd87c64d5b1b0cb0de">
+    <meta name="sogou_site_verification" content="xcpMGDznMD">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/assets/icon/mstile-150x150.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    
+    <link rel="preload" href="/assets/css/0.styles.3bbc1fc0.css" as="style"><link rel="preload" href="/assets/js/app.d40b87a5.js" as="script"><link rel="preload" href="/assets/js/3.6d6f7fe5.js" as="script"><link rel="preload" href="/assets/js/1.82139cbe.js" as="script"><link rel="preload" href="/assets/js/24.65af54e8.js" as="script"><link rel="prefetch" href="/assets/js/10.3a4eb520.js"><link rel="prefetch" href="/assets/js/11.fa3dfb67.js"><link rel="prefetch" href="/assets/js/12.c2ee6b66.js"><link rel="prefetch" href="/assets/js/13.f28da33f.js"><link rel="prefetch" href="/assets/js/14.f0e6ba78.js"><link rel="prefetch" href="/assets/js/15.e54940a3.js"><link rel="prefetch" href="/assets/js/16.d47385d7.js"><link rel="prefetch" href="/assets/js/17.daa3c9ab.js"><link rel="prefetch" href="/assets/js/18.61fd8428.js"><link rel="prefetch" href="/assets/js/19.65b8b43d.js"><link rel="prefetch" href="/assets/js/20.2edf6af0.js"><link rel="prefetch" href="/assets/js/21.1b1c0276.js"><link rel="prefetch" href="/assets/js/22.700094c9.js"><link rel="prefetch" href="/assets/js/23.ddcfecc5.js"><link rel="prefetch" href="/assets/js/25.9f100f25.js"><link rel="prefetch" href="/assets/js/26.1ed5da43.js"><link rel="prefetch" href="/assets/js/27.8f60ccf7.js"><link rel="prefetch" href="/assets/js/28.f154a4cf.js"><link rel="prefetch" href="/assets/js/29.c6e3498b.js"><link rel="prefetch" href="/assets/js/30.0c632ca4.js"><link rel="prefetch" href="/assets/js/31.b0f5c35f.js"><link rel="prefetch" href="/assets/js/32.a0698157.js"><link rel="prefetch" href="/assets/js/33.226802c4.js"><link rel="prefetch" href="/assets/js/34.cd1ed406.js"><link rel="prefetch" href="/assets/js/35.5e596539.js"><link rel="prefetch" href="/assets/js/36.d6479099.js"><link rel="prefetch" href="/assets/js/37.708a39c7.js"><link rel="prefetch" href="/assets/js/38.45843ea4.js"><link rel="prefetch" href="/assets/js/39.6c1fc61e.js"><link rel="prefetch" href="/assets/js/4.f90eb11f.js"><link rel="prefetch" href="/assets/js/40.7f282eb6.js"><link rel="prefetch" href="/assets/js/41.573a66d6.js"><link rel="prefetch" href="/assets/js/42.943af4c9.js"><link rel="prefetch" href="/assets/js/43.6c0558ad.js"><link rel="prefetch" href="/assets/js/44.b44c6c13.js"><link rel="prefetch" href="/assets/js/45.1ab10f63.js"><link rel="prefetch" href="/assets/js/46.150b2dbf.js"><link rel="prefetch" href="/assets/js/47.effe2ad7.js"><link rel="prefetch" href="/assets/js/48.01a86185.js"><link rel="prefetch" href="/assets/js/49.44c01b3e.js"><link rel="prefetch" href="/assets/js/5.8774cf59.js"><link rel="prefetch" href="/assets/js/50.2e731699.js"><link rel="prefetch" href="/assets/js/51.4c5976eb.js"><link rel="prefetch" href="/assets/js/52.6cbdb7ab.js"><link rel="prefetch" href="/assets/js/53.59fdbe6c.js"><link rel="prefetch" href="/assets/js/54.e8ee9e30.js"><link rel="prefetch" href="/assets/js/55.1a04e07c.js"><link rel="prefetch" href="/assets/js/56.3ad2af91.js"><link rel="prefetch" href="/assets/js/57.67169572.js"><link rel="prefetch" href="/assets/js/58.de1bad3e.js"><link rel="prefetch" href="/assets/js/59.9372813a.js"><link rel="prefetch" href="/assets/js/6.2aedd5ee.js"><link rel="prefetch" href="/assets/js/60.12e987d9.js"><link rel="prefetch" href="/assets/js/61.aed8dd65.js"><link rel="prefetch" href="/assets/js/62.ad0029af.js"><link rel="prefetch" href="/assets/js/63.91ca13a1.js"><link rel="prefetch" href="/assets/js/64.b4072c37.js"><link rel="prefetch" href="/assets/js/65.25a39b2e.js"><link rel="prefetch" href="/assets/js/66.6a0c5450.js"><link rel="prefetch" href="/assets/js/67.a2b59e9e.js"><link rel="prefetch" href="/assets/js/68.078b97e3.js"><link rel="prefetch" href="/assets/js/69.f7864b29.js"><link rel="prefetch" href="/assets/js/7.a381cca3.js"><link rel="prefetch" href="/assets/js/70.e067ae54.js"><link rel="prefetch" href="/assets/js/71.1916ad01.js"><link rel="prefetch" href="/assets/js/72.52416b3f.js"><link rel="prefetch" href="/assets/js/73.ff024745.js"><link rel="prefetch" href="/assets/js/74.4dbfcf1c.js"><link rel="prefetch" href="/assets/js/75.0f749e9e.js"><link rel="prefetch" href="/assets/js/8.309e478e.js"><link rel="prefetch" href="/assets/js/9.1c01e9f4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.3bbc1fc0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>子车轻罗的博客</h3> <p class="description" data-v-59e6cb88>龙蛇之变，木雁之间</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>子车轻罗</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/加菲猫.jpeg" alt="子车轻罗的博客" class="logo"> <span class="site-name">子车轻罗的博客</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/平台/" class="nav-link"><i class="undefined"></i>
+  工具/平台
+</a></li><li class="dropdown-item"><!----> <a href="/categories/db/" class="nav-link"><i class="undefined"></i>
+  db
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/go/" class="nav-link"><i class="undefined"></i>
+  go
+</a></li><li class="dropdown-item"><!----> <a href="/categories/大模型/" class="nav-link"><i class="undefined"></i>
+  大模型
+</a></li><li class="dropdown-item"><!----> <a href="/categories/中间件/" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li><li class="dropdown-item"><!----> <a href="/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      子车轻罗 的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/author.jpeg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    子车轻罗
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>64</h3> <h6 data-v-1fad0c41>文章</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>17</h3> <h6 data-v-1fad0c41>标签</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/平台/" class="nav-link"><i class="undefined"></i>
+  工具/平台
+</a></li><li class="dropdown-item"><!----> <a href="/categories/db/" class="nav-link"><i class="undefined"></i>
+  db
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/go/" class="nav-link"><i class="undefined"></i>
+  go
+</a></li><li class="dropdown-item"><!----> <a href="/categories/大模型/" class="nav-link"><i class="undefined"></i>
+  大模型
+</a></li><li class="dropdown-item"><!----> <a href="/categories/中间件/" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li><li class="dropdown-item"><!----> <a href="/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      子车轻罗 的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/article/toolplatform/go-dev-ide.html" class="sidebar-link">安装go开发环境</a></li><li><a href="/article/gostudy/studygoday1.html" class="sidebar-link">Go Study Day01 - 基本数据类型</a></li><li><a href="/article/gostudy/studygoday2.html" class="sidebar-link">Go Study Day02 - 复合数据类型与流程控制</a></li><li><a href="/article/gostudy/studygoday3.html" class="sidebar-link">Go Study Day03 - 函数</a></li><li><a href="/article/gostudy/studygoday4.html" class="sidebar-link">Go Study Day04 - 结构体和包</a></li><li><a href="/article/gostudy/studygoday5.html" class="sidebar-link">Go Study Day05 - 接口和反射</a></li><li><a href="/article/gostudy/studygoday6.html" aria-current="page" class="active sidebar-link">Go Study Day06 - 并发</a></li><li><a href="/article/gostudy/studygoday7.html" class="sidebar-link">Go Study Day07 - 并发安全</a></li><li><a href="/article/gostudy/studygoday8.html" class="sidebar-link">Go Study Day08 - 标准库</a></li><li><a href="/article/gostudy/studygoday9.html" class="sidebar-link">Go Study Day09 - 单元测试</a></li><li><a href="/article/gostudy/studygoday10.html" class="sidebar-link">Go Study Day10 - 中间件</a></li><li><a href="/article/gostudy/studygoday11.html" class="sidebar-link">Go Study Day11 - Context</a></li><li><a href="/article/gostudy/studygoday12.html" class="sidebar-link">Go Study Day12 - go module和pprof</a></li><li><a href="/article/gostudy/studygoday13.html" class="sidebar-link">Go Study Day13 - 网络编程</a></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>Go Study Day06 - 并发</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>子车轻罗</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">Go Study Day06 - 并发</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>子车轻罗</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>2019/8/3</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>go</span><span class="tag-item" data-v-8a445198>学习提升</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="基本概念"><a href="#基本概念" class="header-anchor">#</a> 基本概念</h2> <h3 id="串行、并发与并行"><a href="#串行、并发与并行" class="header-anchor">#</a> 串行、并发与并行</h3> <p>串行：我们都是先读小学，小学毕业后再读初中，读完初中再读高中。</p> <p>并发：同一时间段内执行多个任务（你在用微信和两个女朋友聊天）。</p> <p>并行：同一时刻执行多个任务（你和你朋友都在用微信和女朋友聊天）。</p> <h3 id="进程、线程和协程"><a href="#进程、线程和协程" class="header-anchor">#</a> 进程、线程和协程</h3> <p>进程（process）：程序在操作系统中的一次执行过程，系统进行资源分配和调度的一个独立单位。</p> <p>线程（thread）：操作系统基于进程开启的轻量级进程，是操作系统调度执行的最小单位。</p> <p>协程（coroutine）：非操作系统提供而是由用户自行创建和控制的用户态‘线程’，比线程更轻量级。</p> <blockquote><p>goroutine与操作系统线程（OS线程）的区别?</p> <p>​		goroutine是用户态的线程，比内核态的线程更轻量级一点，初始时只占用2KB的栈空间。可以轻松开启数十万的goroutine也不会崩内存。</p></blockquote> <h2 id="goroutine"><a href="#goroutine" class="header-anchor">#</a> goroutine</h2> <p><code>goroutine</code>是用户态的线程，比内核态线程更轻量级，是由Go语言的运行时(runtime)调度的。</p> <h4 id="启动goroutine"><a href="#启动goroutine" class="header-anchor">#</a> <strong>启动goroutine</strong></h4> <p>将要并发执行的任务包装成一个函数，调用函数的时候前面加上<code>go</code>关键字，就能够开启一个goroutine去执行该函数的任务。</p> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token comment">//&quot;time&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	<span class="token keyword">go</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;你好&quot;</span><span class="token punctuation">)</span>
+	<span class="token comment">// time.Sleep(time.Second)</span>
+<span class="token punctuation">}</span>
+
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br></div></div><p>为什么会先打印<code>你好</code>呢？</p> <p>这是因为在程序中创建 goroutine 执行函数需要一定的开销，而与此同时 main 函数所在的 goroutine 是继续执行的。</p> <p><img src="day06-%E5%B9%B6%E5%8F%91.assets/image-20230316115639836.png" alt="image-20230316115639836"></p> <p>可以通过sleep的方式让goroutine执行完，但不够优雅。</p> <h4 id="sync-waitgroup"><a href="#sync-waitgroup" class="header-anchor">#</a> <strong>sync.WaitGroup</strong></h4> <p>我们在 main goroutine 中使用<code>sync.WaitGroup</code>来等待 hello goroutine 完成后再退出。</p> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+	<span class="token string">&quot;fmt&quot;</span>
+	<span class="token string">&quot;sync&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">// 声明全局等待组变量</span>
+<span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroup
+
+<span class="token keyword">func</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;hello&quot;</span><span class="token punctuation">)</span>
+	wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 告知当前goroutine完成</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">// 登记1个goroutine</span>
+	<span class="token keyword">go</span> <span class="token function">hello</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span><span class="token string">&quot;你好&quot;</span><span class="token punctuation">)</span>
+	wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// 阻塞等待登记的goroutine完成</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br></div></div><h4 id="goroutine什么结束"><a href="#goroutine什么结束" class="header-anchor">#</a> <strong><code>goroutine</code>什么结束?</strong></h4> <p>goroutine 对应的函数结束了，goroutine结束了。</p> <p><code>main</code>函数执行完了，由<code>main</code>函数创建的那些<code>goroutine</code>都结束了。</p> <h4 id="goroutine调度模型"><a href="#goroutine调度模型" class="header-anchor">#</a> <strong><code>goroutine</code>调度模型</strong></h4> <ul><li>G：表示 goroutine，每执行一次<code>go f()</code>就创建一个 G，包含要执行的函数和上下文信息。</li> <li>全局队列（Global Queue）：存放等待运行的 G。</li> <li>P：表示 goroutine 执行所需的资源，最多有 GOMAXPROCS 个。</li> <li>P 的本地队列：同全局队列类似，存放的也是等待运行的G，存的数量有限，不超过256个。新建 G 时，G 优先加入到 P 的本地队列，如果本地队列满了会批量移动部分 G 到全局队列。</li> <li>M：线程想运行任务就得获取 P，从 P 的本地队列获取 G，当 P 的本地队列为空时，M 也会尝试从全局队列或其他 P 的本地队列获取 G。M 运行 G，G 执行之后，M 会从 P 获取下一个 G，不断重复下去。</li> <li>Goroutine 调度器和操作系统调度器是通过 M 结合起来的，每个 M 都代表了1个内核线程，操作系统调度器负责把内核线程分配到 CPU 的核上执行。</li></ul> <h4 id="gomaxprocs"><a href="#gomaxprocs" class="header-anchor">#</a> <strong>GOMAXPROCS</strong></h4> <p>Go1.5之后默认就是操作系统的逻辑核心数，默认跑满CPU</p> <p><code>runtime.GOMAXPROCS(1)</code>:只占用一个核。</p> <h2 id="channel"><a href="#channel" class="header-anchor">#</a> channel</h2> <p>Go 语言中的通道（channel）是一种特殊的类型。通道像一个传送带或者队列，总是遵循先入先出（First In First Out）的规则，保证收发数据的顺序。每一个通道都是一个具体类型的导管，也就是声明channel的时候需要为其指定元素类型。</p> <p>Go语言采用的并发模型是<code>CSP（Communicating Sequential Processes）</code>，提倡<strong>通过通信共享内存</strong>而不是<strong>通过共享内存而实现通信</strong>。</p> <h4 id="channel类型"><a href="#channel类型" class="header-anchor">#</a> <strong>channel类型</strong></h4> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token keyword">var</span> 变量名称 <span class="token keyword">chan</span> 元素类型
+<span class="token keyword">var</span> b <span class="token keyword">chan</span> <span class="token builtin">int</span> <span class="token comment">// 需要指定通道中元素的类型</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p><strong>通道必须使用make函数初始化才能使用!!!</strong></p> <div class="language-go line-numbers-mode"><pre class="language-go"><code>ch1 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token comment">// 无缓冲</span>
+ch2 <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">bool</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment">// 声明一个缓冲区大小为1的通道</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="通道的操作"><a href="#通道的操作" class="header-anchor">#</a> <strong>通道的操作</strong></h4> <p><code>&lt;-</code></p> <ol><li>发送 : <code>ch1 &lt;- 1</code></li> <li>接收: <code>&lt;- ch1</code></li> <li>关闭:<code>close()</code></li></ol> <h4 id="单向通道"><a href="#单向通道" class="header-anchor">#</a> <strong>单向通道</strong></h4> <p>多用于函数传参，限制函数中通道的操作。</p> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token operator">&lt;-</span> <span class="token keyword">chan</span> <span class="token builtin">int</span> <span class="token comment">// 只接收通道，只能接收不能发送</span>
+<span class="token keyword">chan</span> <span class="token operator">&lt;-</span> <span class="token builtin">int</span> <span class="token comment">// 只发送通道，只能发送不能接收</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><h4 id="demo"><a href="#demo" class="header-anchor">#</a> <strong>demo</strong></h4> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token punctuation">(</span>
+    <span class="token string">&quot;fmt&quot;</span>
+<span class="token punctuation">)</span>
+
+<span class="token keyword">func</span> <span class="token function">producer</span><span class="token punctuation">(</span>ch <span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+        ch <span class="token operator">&lt;-</span> i
+    <span class="token punctuation">}</span>
+    <span class="token function">close</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">consumer</span><span class="token punctuation">(</span>ch <span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> done <span class="token keyword">chan</span> <span class="token builtin">bool</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">{</span>
+        val<span class="token punctuation">,</span> ok <span class="token operator">:=</span> <span class="token operator">&lt;-</span> ch
+        <span class="token keyword">if</span> ok <span class="token punctuation">{</span>
+            fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>val<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            done <span class="token operator">&lt;-</span> <span class="token boolean">true</span>
+            <span class="token keyword">return</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">)</span>
+    done <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">bool</span><span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">producer</span><span class="token punctuation">(</span>ch<span class="token punctuation">)</span>
+    <span class="token keyword">go</span> <span class="token function">consumer</span><span class="token punctuation">(</span>ch<span class="token punctuation">,</span> done<span class="token punctuation">)</span>
+    <span class="token operator">&lt;-</span> done
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br></div></div><p>上述代码中，我们定义了两个 goroutine：<code>producer()</code> 和 <code>consumer()</code>。<code>producer()</code> 生产整数数据并将其发送到一个通道 <code>ch</code> 中；<code>consumer()</code> 则从通道 <code>ch</code> 中接收数据并消费。</p> <p>主函数中，我们启动两个 <code>producer()</code> 和 <code>consumer()</code> 的 goroutine，然后等待 <code>consumer()</code> 结束信号从 <code>done</code> 通道中读取。当 <code>consumer()</code> 接收到 <code>ch</code> 通道被关闭的信号时，它会将一个 boolean 类型的值发送到 <code>done</code> 通道中表示其结束，并退出。</p> <p>简单调用 <code>go run</code> 命令运行该程序即可看到生产者和消费者 goroutine 的交互过程和输出结果。</p> <p>Q：如果是无缓冲通道，此时关闭通道，生产者还可以继续往通道发消息吗？</p> <p>A：对于无缓冲通道，关闭通道会导致无法再向该通道发送数据，任何试图发送数据的操作都会导致程序 panic。因此，在通道被关闭之前，生产者可以继续往通道发送消息，但在通道被关闭后，生产者无法继续发送消息。</p> <p>Q：此时我们用的是无缓冲的通道，假设是有缓冲的通道，如果通道有数据，此时关闭通道，读取通道，ok值是false吗？</p> <p>A：答案是否定的。关闭一个非空的通道时，其中的数据可以继续被读取直到通道中的所有数据都被读取完毕。在数据被全部读取之前，读取通道后的ok值仍然是true。只有在通道中的数据被全部读取之后，再次读取通道时，ok值才会变为false。</p> <h4 id="总结"><a href="#总结" class="header-anchor">#</a> <strong>总结</strong></h4> <p><img src="day06-%E5%B9%B6%E5%8F%91.assets/image-20230316130838239.png" alt="image-20230316130838239"></p> <p><img src="day06-%E5%B9%B6%E5%8F%91.assets/image-20230316132407073.png" alt="image-20230316132407073"></p> <h2 id="select多路复用"><a href="#select多路复用" class="header-anchor">#</a> select多路复用</h2> <p>Select 的使用方式类似于之前学到的 switch 语句，它也有一系列 case 分支和一个默认的分支。每个 case 分支会对应一个通道的通信（接收或发送）过程。select 会一直等待，直到其中的某个 case 的通信操作完成时，就会执行该 case 分支对应的语句。具体格式如下：</p> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token keyword">select</span> <span class="token punctuation">{</span>
+<span class="token keyword">case</span> <span class="token operator">&lt;-</span>ch1<span class="token punctuation">:</span>
+	<span class="token comment">//...</span>
+<span class="token keyword">case</span> data <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch2<span class="token punctuation">:</span>
+	<span class="token comment">//...</span>
+<span class="token keyword">case</span> ch3 <span class="token operator">&lt;-</span> <span class="token number">10</span><span class="token punctuation">:</span>
+	<span class="token comment">//...</span>
+<span class="token keyword">default</span><span class="token punctuation">:</span>
+	<span class="token comment">//默认操作</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><h4 id="特点"><a href="#特点" class="header-anchor">#</a> <strong>特点</strong></h4> <ul><li>可处理一个或多个 channel 的发送/接收操作。</li> <li>如果多个 case 同时满足，select 会<strong>随机</strong>选择一个执行。如果多个case都想执行，需要在外层套一个for{}，无限循环在迫使select一直执行下去，这样可使多个case都会被执行到。</li> <li>对于没有 case 的 select 会一直阻塞，可用于阻塞 main 函数，防止退出。</li></ul> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token keyword">package</span> main
+
+<span class="token keyword">import</span> <span class="token string">&quot;fmt&quot;</span>
+
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+	ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">int</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i <span class="token operator">:=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;=</span> <span class="token number">10</span><span class="token punctuation">;</span> i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		<span class="token keyword">select</span> <span class="token punctuation">{</span>
+		<span class="token keyword">case</span> x <span class="token operator">:=</span> <span class="token operator">&lt;-</span>ch<span class="token punctuation">:</span>
+			fmt<span class="token punctuation">.</span><span class="token function">Println</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span>
+		<span class="token keyword">case</span> ch <span class="token operator">&lt;-</span> i<span class="token punctuation">:</span>
+		<span class="token punctuation">}</span>
+	<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><h2 id="workpool"><a href="#workpool" class="header-anchor">#</a> workPool</h2> <p>控制并发，当有10个任务需要处理时，可以先把任务线程创建出来，通过控制并发数量慢慢处理。</p> <div class="language-go line-numbers-mode"><pre class="language-go"><code><span class="token keyword">var</span> wg sync<span class="token punctuation">.</span>WaitGroupt
+<span class="token keyword">func</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	userCount <span class="token operator">:=</span><span class="token number">10</span>
+	ch <span class="token operator">:=</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token keyword">chan</span> <span class="token builtin">bool</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span>
+	<span class="token keyword">for</span> i<span class="token operator">:=</span><span class="token number">0</span><span class="token punctuation">;</span>i userCount<span class="token punctuation">;</span>i<span class="token operator">++</span> <span class="token punctuation">{</span>
+		wg<span class="token punctuation">.</span><span class="token function">Add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+		<span class="token keyword">go</span> <span class="token function">Read</span><span class="token punctuation">(</span>ch<span class="token punctuation">,</span>i<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+		wg<span class="token punctuation">.</span><span class="token function">Wait</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">func</span> <span class="token function">Read</span><span class="token punctuation">(</span>ch <span class="token keyword">chan</span> <span class="token builtin">bool</span><span class="token punctuation">,</span>i <span class="token builtin">int</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">defer</span> wg<span class="token punctuation">.</span><span class="token function">Done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+	ch <span class="token operator">&lt;-</span><span class="token boolean">true</span>
+	fmt<span class="token punctuation">.</span><span class="token function">Printf</span><span class="token punctuation">(</span><span class="token string">&quot;go func:%d,time:%d\n&quot;</span><span class="token punctuation">,</span>i<span class="token punctuation">,</span>time<span class="token punctuation">.</span><span class="token function">Now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">Unix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+	time<span class="token punctuation">.</span><span class="token function">Sleep</span><span class="token punctuation">(</span>time<span class="token punctuation">.</span>Second<span class="token punctuation">)</span>
+	<span class="token operator">&lt;-</span>ch
+<span class="token punctuation">}</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">2023/4/26</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/article/gostudy/studygoday5.html" class="prev">
+          Go Study Day05 - 接口和反射
+        </a></span> <span class="next"><a href="/article/gostudy/studygoday7.html">
+          Go Study Day07 - 并发安全
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/article/gostudy/studygoday6.html#基本概念" class="sidebar-link reco-side-基本概念" data-v-b57cc07c>基本概念</a></li><li class="level-3" data-v-b57cc07c><a href="/article/gostudy/studygoday6.html#串行、并发与并行" class="sidebar-link reco-side-串行、并发与并行" data-v-b57cc07c>串行、并发与并行</a></li><li class="level-3" data-v-b57cc07c><a href="/article/gostudy/studygoday6.html#进程、线程和协程" class="sidebar-link reco-side-进程、线程和协程" data-v-b57cc07c>进程、线程和协程</a></li><li class="level-2" data-v-b57cc07c><a href="/article/gostudy/studygoday6.html#goroutine" class="sidebar-link reco-side-goroutine" data-v-b57cc07c>goroutine</a></li><li class="level-2" data-v-b57cc07c><a href="/article/gostudy/studygoday6.html#channel" class="sidebar-link reco-side-channel" data-v-b57cc07c>channel</a></li><li class="level-2" data-v-b57cc07c><a href="/article/gostudy/studygoday6.html#select多路复用" class="sidebar-link reco-side-select多路复用" data-v-b57cc07c>select多路复用</a></li><li class="level-2" data-v-b57cc07c><a href="/article/gostudy/studygoday6.html#workpool" class="sidebar-link reco-side-workpool" data-v-b57cc07c>workPool</a></li></ul></div></div></div><div class="global-ui"><div class="reco-bgm-panel" data-v-b1d3339e><audio id="bgm" src="/bgm/只爱西经-林一.mp3" data-v-b1d3339e></audio> <div class="reco-float-box" style="bottom:20px;z-index:999999;display:none;" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><img src="https://img.18183.com/uploads/allimg/210927/379-21092GG645.jpg@!18183" data-v-b1d3339e></div> <div class="reco-bgm-box" style="left:10px;bottom:10px;z-index:999999;" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><div class="reco-bgm-cover" style="background-image:url(https://img.18183.com/uploads/allimg/210927/379-21092GG645.jpg@!18183);" data-v-b1d3339e><div class="mini-operation" style="display:none;" data-v-b1d3339e><i class="reco-bgm reco-bgm-pause" style="display:none;" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-play" style="display:none;" data-v-b1d3339e></i></div> <div class="falut-message" style="display:none;" data-v-b1d3339e>
+          播放失败
+        </div></div> <div class="reco-bgm-info" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><div class="info-box" data-v-b1d3339e><i class="reco-bgm reco-bgm-music music" data-v-b1d3339e></i>只爱西经</div> <div class="info-box" data-v-b1d3339e><i class="reco-bgm reco-bgm-artist" data-v-b1d3339e></i>林一</div> <div class="reco-bgm-progress" data-v-b1d3339e><div class="progress-bar" data-v-b1d3339e><div class="bar" data-v-b1d3339e></div></div></div> <div class="reco-bgm-operation" data-v-b1d3339e><i class="reco-bgm reco-bgm-last last" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-pause pause" style="display:none;" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-play play" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-next next" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-volume1 volume" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-mute mute" style="display:none;" data-v-b1d3339e></i> <div class="volume-bar" data-v-b1d3339e><div class="bar" data-v-b1d3339e></div></div></div></div> <div class="reco-bgm-left-box" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><i class="reco-bgm reco-bgm-left" data-v-b1d3339e></i></div></div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:-1;" data-v-248d85d6></canvas></div><!----><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 子车轻罗的博客
+    </div> <div class="operation" style="left:10px;bottom:65px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="300" class="live2d" style="left:70px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div id="goTop" class="hide-cat" data-v-bf92849a></div></div></div>
+    <script src="/assets/js/app.d40b87a5.js" defer></script><script src="/assets/js/3.6d6f7fe5.js" defer></script><script src="/assets/js/1.82139cbe.js" defer></script><script src="/assets/js/24.65af54e8.js" defer></script>
+  </body>
+</html>

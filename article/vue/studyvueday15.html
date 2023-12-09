@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>VUE Study Day15 - vue-cli | 子车轻罗的博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/assets/icon/favicon.ico">
+    <link rel="manifest" href="/assets/config/manifest.json">
+    <link rel="apple-touch-icon" href="/assets/icon/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/icon/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/seo-autopush.js"></script>
+    <script src="/sw.js"></script>
+    <meta name="description" content="从0学vue 第15天 vue-cli">
+    <meta name="keywords" content="自学 vue vue-cli">
+    <meta name="image" content="https://www.yangxiaokang.com/assets/1616227273366.png">
+    <meta name="twitter:title" content="VUE Study Day15 - vue-cli">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://www.yangxiaokang.com/assets/1616227273366.png">
+    <meta name="twitter:url" content="https://www.yangxiaokang.com/article/vue/day15-vue-cli3.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="VUE Study Day15 - vue-cli">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://www.yangxiaokang.com/assets/1616227273366.png">
+    <meta property="og:url" content="https://www.yangxiaokang.com/article/vue/day15-vue-cli3.html">
+    <meta property="og:site_name" content="zicheqingluo">
+    <meta property="article:published_time" content="2021-2-28">
+    <meta property="article:tag" content="vue">
+    <meta itemprop="name" content="VUE Study Day15 - vue-cli">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://www.yangxiaokang.com/assets/1616227273366.png">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="codeva-I7UsJ4rszu">
+    <meta name="bytedance-verification-code" content="vR4ookjymMy2w/hg7MUk">
+    <meta name="360-site-verification" content="014dce242fa6f0fd87c64d5b1b0cb0de">
+    <meta name="sogou_site_verification" content="xcpMGDznMD">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/assets/icon/mstile-150x150.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    
+    <link rel="preload" href="/assets/css/0.styles.3bbc1fc0.css" as="style"><link rel="preload" href="/assets/js/app.d40b87a5.js" as="script"><link rel="preload" href="/assets/js/3.6d6f7fe5.js" as="script"><link rel="preload" href="/assets/js/1.82139cbe.js" as="script"><link rel="preload" href="/assets/js/72.52416b3f.js" as="script"><link rel="prefetch" href="/assets/js/10.3a4eb520.js"><link rel="prefetch" href="/assets/js/11.fa3dfb67.js"><link rel="prefetch" href="/assets/js/12.c2ee6b66.js"><link rel="prefetch" href="/assets/js/13.f28da33f.js"><link rel="prefetch" href="/assets/js/14.f0e6ba78.js"><link rel="prefetch" href="/assets/js/15.e54940a3.js"><link rel="prefetch" href="/assets/js/16.d47385d7.js"><link rel="prefetch" href="/assets/js/17.daa3c9ab.js"><link rel="prefetch" href="/assets/js/18.61fd8428.js"><link rel="prefetch" href="/assets/js/19.65b8b43d.js"><link rel="prefetch" href="/assets/js/20.2edf6af0.js"><link rel="prefetch" href="/assets/js/21.1b1c0276.js"><link rel="prefetch" href="/assets/js/22.700094c9.js"><link rel="prefetch" href="/assets/js/23.ddcfecc5.js"><link rel="prefetch" href="/assets/js/24.65af54e8.js"><link rel="prefetch" href="/assets/js/25.9f100f25.js"><link rel="prefetch" href="/assets/js/26.1ed5da43.js"><link rel="prefetch" href="/assets/js/27.8f60ccf7.js"><link rel="prefetch" href="/assets/js/28.f154a4cf.js"><link rel="prefetch" href="/assets/js/29.c6e3498b.js"><link rel="prefetch" href="/assets/js/30.0c632ca4.js"><link rel="prefetch" href="/assets/js/31.b0f5c35f.js"><link rel="prefetch" href="/assets/js/32.a0698157.js"><link rel="prefetch" href="/assets/js/33.226802c4.js"><link rel="prefetch" href="/assets/js/34.cd1ed406.js"><link rel="prefetch" href="/assets/js/35.5e596539.js"><link rel="prefetch" href="/assets/js/36.d6479099.js"><link rel="prefetch" href="/assets/js/37.708a39c7.js"><link rel="prefetch" href="/assets/js/38.45843ea4.js"><link rel="prefetch" href="/assets/js/39.6c1fc61e.js"><link rel="prefetch" href="/assets/js/4.f90eb11f.js"><link rel="prefetch" href="/assets/js/40.7f282eb6.js"><link rel="prefetch" href="/assets/js/41.573a66d6.js"><link rel="prefetch" href="/assets/js/42.943af4c9.js"><link rel="prefetch" href="/assets/js/43.6c0558ad.js"><link rel="prefetch" href="/assets/js/44.b44c6c13.js"><link rel="prefetch" href="/assets/js/45.1ab10f63.js"><link rel="prefetch" href="/assets/js/46.150b2dbf.js"><link rel="prefetch" href="/assets/js/47.effe2ad7.js"><link rel="prefetch" href="/assets/js/48.01a86185.js"><link rel="prefetch" href="/assets/js/49.44c01b3e.js"><link rel="prefetch" href="/assets/js/5.8774cf59.js"><link rel="prefetch" href="/assets/js/50.2e731699.js"><link rel="prefetch" href="/assets/js/51.4c5976eb.js"><link rel="prefetch" href="/assets/js/52.6cbdb7ab.js"><link rel="prefetch" href="/assets/js/53.59fdbe6c.js"><link rel="prefetch" href="/assets/js/54.e8ee9e30.js"><link rel="prefetch" href="/assets/js/55.1a04e07c.js"><link rel="prefetch" href="/assets/js/56.3ad2af91.js"><link rel="prefetch" href="/assets/js/57.67169572.js"><link rel="prefetch" href="/assets/js/58.de1bad3e.js"><link rel="prefetch" href="/assets/js/59.9372813a.js"><link rel="prefetch" href="/assets/js/6.2aedd5ee.js"><link rel="prefetch" href="/assets/js/60.12e987d9.js"><link rel="prefetch" href="/assets/js/61.aed8dd65.js"><link rel="prefetch" href="/assets/js/62.ad0029af.js"><link rel="prefetch" href="/assets/js/63.91ca13a1.js"><link rel="prefetch" href="/assets/js/64.b4072c37.js"><link rel="prefetch" href="/assets/js/65.25a39b2e.js"><link rel="prefetch" href="/assets/js/66.6a0c5450.js"><link rel="prefetch" href="/assets/js/67.a2b59e9e.js"><link rel="prefetch" href="/assets/js/68.078b97e3.js"><link rel="prefetch" href="/assets/js/69.f7864b29.js"><link rel="prefetch" href="/assets/js/7.a381cca3.js"><link rel="prefetch" href="/assets/js/70.e067ae54.js"><link rel="prefetch" href="/assets/js/71.1916ad01.js"><link rel="prefetch" href="/assets/js/73.ff024745.js"><link rel="prefetch" href="/assets/js/74.4dbfcf1c.js"><link rel="prefetch" href="/assets/js/75.0f749e9e.js"><link rel="prefetch" href="/assets/js/8.309e478e.js"><link rel="prefetch" href="/assets/js/9.1c01e9f4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.3bbc1fc0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>子车轻罗的博客</h3> <p class="description" data-v-59e6cb88>龙蛇之变，木雁之间</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>子车轻罗</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/加菲猫.jpeg" alt="子车轻罗的博客" class="logo"> <span class="site-name">子车轻罗的博客</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/平台/" class="nav-link"><i class="undefined"></i>
+  工具/平台
+</a></li><li class="dropdown-item"><!----> <a href="/categories/db/" class="nav-link"><i class="undefined"></i>
+  db
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/go/" class="nav-link"><i class="undefined"></i>
+  go
+</a></li><li class="dropdown-item"><!----> <a href="/categories/大模型/" class="nav-link"><i class="undefined"></i>
+  大模型
+</a></li><li class="dropdown-item"><!----> <a href="/categories/中间件/" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li><li class="dropdown-item"><!----> <a href="/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      子车轻罗 的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/author.jpeg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    子车轻罗
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>64</h3> <h6 data-v-1fad0c41>文章</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>17</h3> <h6 data-v-1fad0c41>标签</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/平台/" class="nav-link"><i class="undefined"></i>
+  工具/平台
+</a></li><li class="dropdown-item"><!----> <a href="/categories/db/" class="nav-link"><i class="undefined"></i>
+  db
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/go/" class="nav-link"><i class="undefined"></i>
+  go
+</a></li><li class="dropdown-item"><!----> <a href="/categories/大模型/" class="nav-link"><i class="undefined"></i>
+  大模型
+</a></li><li class="dropdown-item"><!----> <a href="/categories/中间件/" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li><li class="dropdown-item"><!----> <a href="/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      子车轻罗 的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/article/vue/studyvueday1.html" class="sidebar-link">VUE Study Day01 - 初识vue指令</a></li><li><a href="/article/vue/studyvueday2.html" class="sidebar-link">VUE Study Day02 - Vue常用特性</a></li><li><a href="/article/vue/studyvueday3.html" class="sidebar-link">VUE Study Day03 - Vue组件</a></li><li><a href="/article/vue/studyvueday4.html" class="sidebar-link">VUE Study Day04 - 接口调用</a></li><li><a href="/article/vue/studyvueday5.html" class="sidebar-link">VUE Study Day05 - 路由</a></li><li><a href="/article/vue/studyvueday6.html" class="sidebar-link">VUE Study Day06 - 前端工程化</a></li><li><a href="/article/vue/studyvueday7.html" class="sidebar-link">VUE Study Day07 - 实战1</a></li><li><a href="/article/vue/studyvueday8.html" class="sidebar-link">VUE Study Day08 - 实战2</a></li><li><a href="/article/vue/studyvueday9.html" class="sidebar-link">VUE Study Day09 - 实战3</a></li><li><a href="/article/vue/studyvueday10.html" class="sidebar-link">VUE Study Day10 - 实战4</a></li><li><a href="/article/vue/studyvueday11.html" class="sidebar-link">VUE Study Day11 - 实战-5</a></li><li><a href="/article/vue/studyvueday12.html" class="sidebar-link">VUE Study Day12 - 实战-6</a></li><li><a href="/article/vue/studyvueday13.html" class="sidebar-link">VUE Study Day13 - 实战-7</a></li><li><a href="/article/vue/studyvueday14.html" class="sidebar-link">VUE Study Day14 - vuex</a></li><li><a href="/article/vue/studyvueday15.html" aria-current="page" class="active sidebar-link">VUE Study Day15 - vue-cli</a></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>VUE Study Day15 - vue-cli</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>子车轻罗</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">VUE Study Day15 - vue-cli</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>子车轻罗</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>2021/2/28</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>vue</span><span class="tag-item" data-v-8a445198>学习提升</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="安装vue脚手架"><a href="#安装vue脚手架" class="header-anchor">#</a> 安装vue脚手架</h2> <p>安装3.x版本的Vue脚手架：
+<code>npm install -g @vue/cli</code></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>分析Vue脚手架生成的项目结构
+    node_modules:依赖包目录
+    public：静态资源目录
+    src：源码目录
+    src/assets:资源目录
+    src/components：组件目录
+    src/views:视图组件目录
+    src/App.vue:根组件
+    src/main.js:入口js
+    src/router.js:路由js
+    babel.config.js:babel配置文件
+    .eslintrc.js:
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><h2 id="使用vue-ui新建项目"><a href="#使用vue-ui新建项目" class="header-anchor">#</a> 使用vue ui新建项目</h2> <ul><li><p>执行vue ui进入dashboard</p></li> <li><p>选择Vue项目管理器<img src="assets/1616227273366.png" alt="1616227273366"></p></li> <li><p>创建<img src="assets/1616227299134.png" alt="1616227299134"></p></li> <li><p>选择项目存放目录<img src="assets/1616227335402.png" alt="1616227335402"></p></li> <li><p>创建项目</p></li> <li><p>详情：包管理器选择npm，项目名随意，git commit信息随意<img src="assets/1616227469288.png" alt="1616227469288"></p></li> <li><p>预设：第一次可以选择手动配置，如果以前配置过也可以选择模板<img src="assets/1616227516817.png" alt="1616227516817"></p></li> <li><p>功能：将babel、vuex、router、linter/formatter、使用配置文件(use config)、choose vue version(低版本没有)打开<img src="assets/1616462433426.png" alt="1616462433426"></p></li> <li><p>配置:选择eslint + standard config，其他按需<img src="assets/1616227804440.png" alt="1616227804440"></p></li> <li><p>是否存取预设：按需即可</p></li></ul> <h2 id="初始化项目"><a href="#初始化项目" class="header-anchor">#</a> 初始化项目</h2> <ul><li><p>清空app.vue，做基本 配置</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>&lt;template&gt;
+  &lt;div&gt;HELLO world&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+export default {
+  data () {
+    return {}
+  }
+}
+&lt;/script&gt;
+
+&lt;style lang=&quot;less&quot; scoped&gt;
+&lt;/style&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div></li> <li><p>删除src/components/HelloWorld.vue</p></li></ul> <h2 id="安装插件"><a href="#安装插件" class="header-anchor">#</a> 安装插件</h2> <h5 id="elementui"><a href="#elementui" class="header-anchor">#</a> <strong>elementui</strong></h5> <p>选择插件-安装插件</p> <h4 id=""><a href="#" class="header-anchor">#</a> <img src="assets/1616462813767.png" alt="1616462813767"></h4> <p>修改配置，改为按需导入</p> <p><img src="assets/1616463507981.png" alt="1616463507981"></p> <h2 id="安装依赖"><a href="#安装依赖" class="header-anchor">#</a> 安装依赖</h2> <h3 id="运行依赖"><a href="#运行依赖" class="header-anchor">#</a> 运行依赖</h3> <h5 id="axios"><a href="#axios" class="header-anchor">#</a> <strong>axios</strong></h5> <p>依赖-安装依赖-运行依赖</p> <p><img src="assets/1616463591115.png" alt="1616463591115"></p> <p><strong>安装后配置main.js</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>import axios from 'axios'
+// 默认接口地址 
+axios.defaults.baseURL = 'http://127.0.0.1:8888/api/private/v1/'
+// 注册为全局组件
+Vue.prototype.$http = axios
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h4 id="树形数据展示"><a href="#树形数据展示" class="header-anchor">#</a> <strong>树形数据展示</strong></h4> <p>vue-table-with-tree-grid</p> <p>使用第三方插件vue-table-with-tree-grid展示分类数据，见day10</p> <h4 id="进度条"><a href="#进度条" class="header-anchor">#</a> <strong>进度条</strong></h4> <p>先打开项目控制台，打开依赖，安装nprogress
+打开main.js，编写如下代码</p> <p><img src="assets/1616598198849.png" alt="1616598198849"></p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token comment">//导入进度条插件</span>
+<span class="token keyword">import</span> NProgress <span class="token keyword">from</span> <span class="token string">'nprogress'</span>
+<span class="token comment">//导入进度条样式</span>
+<span class="token keyword">import</span> <span class="token string">'nprogress/nprogress.css'</span>
+<span class="token operator">...</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+<span class="token comment">//请求在到达服务器之前，先会调用use中的这个回调函数来添加请求头信息</span>
+axios<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>request<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token parameter">config</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">//当进入request拦截器，表示发送了请求，我们就开启进度条</span>
+  NProgress<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token comment">//为请求头对象，添加token验证的Authorization字段</span>
+  config<span class="token punctuation">.</span>headers<span class="token punctuation">.</span>Authorization <span class="token operator">=</span> window<span class="token punctuation">.</span>sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">&quot;token&quot;</span><span class="token punctuation">)</span>
+  <span class="token comment">//必须返回config</span>
+  <span class="token keyword">return</span> config
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">//在response拦截器中，隐藏进度条</span>
+axios<span class="token punctuation">.</span>interceptors<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">use</span><span class="token punctuation">(</span><span class="token parameter">config</span> <span class="token operator">=&gt;</span><span class="token punctuation">{</span>
+  <span class="token comment">//当进入response拦截器，表示请求已经结束，我们就结束进度条</span>
+  NProgress<span class="token punctuation">.</span><span class="token function">done</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> config
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><h3 id="开发依赖"><a href="#开发依赖" class="header-anchor">#</a> 开发依赖</h3> <h4 id="less-loader"><a href="#less-loader" class="header-anchor">#</a> <strong>less-loader</strong></h4> <p>不能安装8.0.0版本，会有报错，手动命令行安装7.3.0版本</p> <p><code>npm install less-loader@7.3.0</code></p> <h4 id="less"><a href="#less" class="header-anchor">#</a> <strong>less</strong></h4> <p><img src="assets/1616514214134.png" alt="1616514214134"></p> <p>安装后需要重新编译项目<img src="assets/1616513541309.png" alt="1616513541309"></p> <h2 id="安装其他组件"><a href="#安装其他组件" class="header-anchor">#</a> 安装其他组件</h2> <h4 id="字体"><a href="#字体" class="header-anchor">#</a> <strong>字体</strong></h4> <p>具体见day7电商</p> <h4 id="富文本插件"><a href="#富文本插件" class="header-anchor">#</a> <strong>富文本插件</strong></h4> <p>见day12</p> <h4 id="图标插件"><a href="#图标插件" class="header-anchor">#</a> <strong>图标插件</strong></h4> <p>见day13</p></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">2023/3/12</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/article/vue/studyvueday14.html" class="prev">
+          VUE Study Day14 - vuex
+        </a></span> <!----></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/article/vue/studyvueday15.html#安装vue脚手架" class="sidebar-link reco-side-安装vue脚手架" data-v-b57cc07c>安装vue脚手架</a></li><li class="level-2" data-v-b57cc07c><a href="/article/vue/studyvueday15.html#使用vue-ui新建项目" class="sidebar-link reco-side-使用vue-ui新建项目" data-v-b57cc07c>使用vue ui新建项目</a></li><li class="level-2" data-v-b57cc07c><a href="/article/vue/studyvueday15.html#初始化项目" class="sidebar-link reco-side-初始化项目" data-v-b57cc07c>初始化项目</a></li><li class="level-2" data-v-b57cc07c><a href="/article/vue/studyvueday15.html#安装插件" class="sidebar-link reco-side-安装插件" data-v-b57cc07c>安装插件</a></li><li class="level-2" data-v-b57cc07c><a href="/article/vue/studyvueday15.html#安装依赖" class="sidebar-link reco-side-安装依赖" data-v-b57cc07c>安装依赖</a></li><li class="level-3" data-v-b57cc07c><a href="/article/vue/studyvueday15.html#运行依赖" class="sidebar-link reco-side-运行依赖" data-v-b57cc07c>运行依赖</a></li><li class="level-3" data-v-b57cc07c><a href="/article/vue/studyvueday15.html#开发依赖" class="sidebar-link reco-side-开发依赖" data-v-b57cc07c>开发依赖</a></li><li class="level-2" data-v-b57cc07c><a href="/article/vue/studyvueday15.html#安装其他组件" class="sidebar-link reco-side-安装其他组件" data-v-b57cc07c>安装其他组件</a></li></ul></div></div></div><div class="global-ui"><div class="reco-bgm-panel" data-v-b1d3339e><audio id="bgm" src="/bgm/只爱西经-林一.mp3" data-v-b1d3339e></audio> <div class="reco-float-box" style="bottom:20px;z-index:999999;display:none;" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><img src="https://img.18183.com/uploads/allimg/210927/379-21092GG645.jpg@!18183" data-v-b1d3339e></div> <div class="reco-bgm-box" style="left:10px;bottom:10px;z-index:999999;" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><div class="reco-bgm-cover" style="background-image:url(https://img.18183.com/uploads/allimg/210927/379-21092GG645.jpg@!18183);" data-v-b1d3339e><div class="mini-operation" style="display:none;" data-v-b1d3339e><i class="reco-bgm reco-bgm-pause" style="display:none;" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-play" style="display:none;" data-v-b1d3339e></i></div> <div class="falut-message" style="display:none;" data-v-b1d3339e>
+          播放失败
+        </div></div> <div class="reco-bgm-info" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><div class="info-box" data-v-b1d3339e><i class="reco-bgm reco-bgm-music music" data-v-b1d3339e></i>只爱西经</div> <div class="info-box" data-v-b1d3339e><i class="reco-bgm reco-bgm-artist" data-v-b1d3339e></i>林一</div> <div class="reco-bgm-progress" data-v-b1d3339e><div class="progress-bar" data-v-b1d3339e><div class="bar" data-v-b1d3339e></div></div></div> <div class="reco-bgm-operation" data-v-b1d3339e><i class="reco-bgm reco-bgm-last last" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-pause pause" style="display:none;" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-play play" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-next next" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-volume1 volume" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-mute mute" style="display:none;" data-v-b1d3339e></i> <div class="volume-bar" data-v-b1d3339e><div class="bar" data-v-b1d3339e></div></div></div></div> <div class="reco-bgm-left-box" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><i class="reco-bgm reco-bgm-left" data-v-b1d3339e></i></div></div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:-1;" data-v-248d85d6></canvas></div><!----><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 子车轻罗的博客
+    </div> <div class="operation" style="left:10px;bottom:65px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="300" class="live2d" style="left:70px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div id="goTop" class="hide-cat" data-v-bf92849a></div></div></div>
+    <script src="/assets/js/app.d40b87a5.js" defer></script><script src="/assets/js/3.6d6f7fe5.js" defer></script><script src="/assets/js/1.82139cbe.js" defer></script><script src="/assets/js/72.52416b3f.js" defer></script>
+  </body>
+</html>

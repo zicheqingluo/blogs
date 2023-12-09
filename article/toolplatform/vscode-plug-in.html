@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vscode 插件 | 子车轻罗的博客</title>
+    <meta name="generator" content="VuePress 1.9.9">
+    <link rel="icon" href="/assets/icon/favicon.ico">
+    <link rel="manifest" href="/assets/config/manifest.json">
+    <link rel="apple-touch-icon" href="/assets/icon/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/icon/icons/safari-pinned-tab.svg" color="#3eaf7c">
+    <script src="/assets/js/plugins.js"></script>
+    <script src="/assets/js/seo-autopush.js"></script>
+    <script src="/sw.js"></script>
+    <meta name="description" content="vscode 前端vue插件 go插件 生产力插件">
+    <meta name="keywords" content="vscode vue插件 前端插件 后端插件 开发插件">
+    <meta name="image" content="https://exafunction.github.io/public/demos/g_python_random_gen_with_logo.gif">
+    <meta name="twitter:title" content="vscode 插件">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://exafunction.github.io/public/demos/g_python_random_gen_with_logo.gif">
+    <meta name="twitter:url" content="https://www.yangxiaokang.com/article/toolplatform/vscode%E6%8F%92%E4%BB%B6.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="vscode 插件">
+    <meta property="og:description" content="">
+    <meta property="og:image" content="https://exafunction.github.io/public/demos/g_python_random_gen_with_logo.gif">
+    <meta property="og:url" content="https://www.yangxiaokang.com/article/toolplatform/vscode%E6%8F%92%E4%BB%B6.html">
+    <meta property="og:site_name" content="zicheqingluo">
+    <meta property="article:published_time" content="2020-3-8">
+    <meta property="article:tag" content="vscode">
+    <meta itemprop="name" content="vscode 插件">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://exafunction.github.io/public/demos/g_python_random_gen_with_logo.gif">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="X-UA-Compatible" content="IE=edge">
+    <meta name="baidu-site-verification" content="codeva-I7UsJ4rszu">
+    <meta name="bytedance-verification-code" content="vR4ookjymMy2w/hg7MUk">
+    <meta name="360-site-verification" content="014dce242fa6f0fd87c64d5b1b0cb0de">
+    <meta name="sogou_site_verification" content="xcpMGDznMD">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/assets/icon/mstile-150x150.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    
+    <link rel="preload" href="/assets/css/0.styles.3bbc1fc0.css" as="style"><link rel="preload" href="/assets/js/app.d40b87a5.js" as="script"><link rel="preload" href="/assets/js/3.6d6f7fe5.js" as="script"><link rel="preload" href="/assets/js/1.82139cbe.js" as="script"><link rel="preload" href="/assets/js/54.e8ee9e30.js" as="script"><link rel="prefetch" href="/assets/js/10.3a4eb520.js"><link rel="prefetch" href="/assets/js/11.fa3dfb67.js"><link rel="prefetch" href="/assets/js/12.c2ee6b66.js"><link rel="prefetch" href="/assets/js/13.f28da33f.js"><link rel="prefetch" href="/assets/js/14.f0e6ba78.js"><link rel="prefetch" href="/assets/js/15.e54940a3.js"><link rel="prefetch" href="/assets/js/16.d47385d7.js"><link rel="prefetch" href="/assets/js/17.daa3c9ab.js"><link rel="prefetch" href="/assets/js/18.61fd8428.js"><link rel="prefetch" href="/assets/js/19.65b8b43d.js"><link rel="prefetch" href="/assets/js/20.2edf6af0.js"><link rel="prefetch" href="/assets/js/21.1b1c0276.js"><link rel="prefetch" href="/assets/js/22.700094c9.js"><link rel="prefetch" href="/assets/js/23.ddcfecc5.js"><link rel="prefetch" href="/assets/js/24.65af54e8.js"><link rel="prefetch" href="/assets/js/25.9f100f25.js"><link rel="prefetch" href="/assets/js/26.1ed5da43.js"><link rel="prefetch" href="/assets/js/27.8f60ccf7.js"><link rel="prefetch" href="/assets/js/28.f154a4cf.js"><link rel="prefetch" href="/assets/js/29.c6e3498b.js"><link rel="prefetch" href="/assets/js/30.0c632ca4.js"><link rel="prefetch" href="/assets/js/31.b0f5c35f.js"><link rel="prefetch" href="/assets/js/32.a0698157.js"><link rel="prefetch" href="/assets/js/33.226802c4.js"><link rel="prefetch" href="/assets/js/34.cd1ed406.js"><link rel="prefetch" href="/assets/js/35.5e596539.js"><link rel="prefetch" href="/assets/js/36.d6479099.js"><link rel="prefetch" href="/assets/js/37.708a39c7.js"><link rel="prefetch" href="/assets/js/38.45843ea4.js"><link rel="prefetch" href="/assets/js/39.6c1fc61e.js"><link rel="prefetch" href="/assets/js/4.f90eb11f.js"><link rel="prefetch" href="/assets/js/40.7f282eb6.js"><link rel="prefetch" href="/assets/js/41.573a66d6.js"><link rel="prefetch" href="/assets/js/42.943af4c9.js"><link rel="prefetch" href="/assets/js/43.6c0558ad.js"><link rel="prefetch" href="/assets/js/44.b44c6c13.js"><link rel="prefetch" href="/assets/js/45.1ab10f63.js"><link rel="prefetch" href="/assets/js/46.150b2dbf.js"><link rel="prefetch" href="/assets/js/47.effe2ad7.js"><link rel="prefetch" href="/assets/js/48.01a86185.js"><link rel="prefetch" href="/assets/js/49.44c01b3e.js"><link rel="prefetch" href="/assets/js/5.8774cf59.js"><link rel="prefetch" href="/assets/js/50.2e731699.js"><link rel="prefetch" href="/assets/js/51.4c5976eb.js"><link rel="prefetch" href="/assets/js/52.6cbdb7ab.js"><link rel="prefetch" href="/assets/js/53.59fdbe6c.js"><link rel="prefetch" href="/assets/js/55.1a04e07c.js"><link rel="prefetch" href="/assets/js/56.3ad2af91.js"><link rel="prefetch" href="/assets/js/57.67169572.js"><link rel="prefetch" href="/assets/js/58.de1bad3e.js"><link rel="prefetch" href="/assets/js/59.9372813a.js"><link rel="prefetch" href="/assets/js/6.2aedd5ee.js"><link rel="prefetch" href="/assets/js/60.12e987d9.js"><link rel="prefetch" href="/assets/js/61.aed8dd65.js"><link rel="prefetch" href="/assets/js/62.ad0029af.js"><link rel="prefetch" href="/assets/js/63.91ca13a1.js"><link rel="prefetch" href="/assets/js/64.b4072c37.js"><link rel="prefetch" href="/assets/js/65.25a39b2e.js"><link rel="prefetch" href="/assets/js/66.6a0c5450.js"><link rel="prefetch" href="/assets/js/67.a2b59e9e.js"><link rel="prefetch" href="/assets/js/68.078b97e3.js"><link rel="prefetch" href="/assets/js/69.f7864b29.js"><link rel="prefetch" href="/assets/js/7.a381cca3.js"><link rel="prefetch" href="/assets/js/70.e067ae54.js"><link rel="prefetch" href="/assets/js/71.1916ad01.js"><link rel="prefetch" href="/assets/js/72.52416b3f.js"><link rel="prefetch" href="/assets/js/73.ff024745.js"><link rel="prefetch" href="/assets/js/74.4dbfcf1c.js"><link rel="prefetch" href="/assets/js/75.0f749e9e.js"><link rel="prefetch" href="/assets/js/8.309e478e.js"><link rel="prefetch" href="/assets/js/9.1c01e9f4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.3bbc1fc0.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-7dd95ae2><div data-v-7dd95ae2><div class="password-shadow password-wrapper-out" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>子车轻罗的博客</h3> <p class="description" data-v-59e6cb88>龙蛇之变，木雁之间</p> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>子车轻罗</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div class="hide" data-v-7dd95ae2><header class="navbar" data-v-7dd95ae2><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/加菲猫.jpeg" alt="子车轻罗的博客" class="logo"> <span class="site-name">子车轻罗的博客</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/平台/" class="nav-link"><i class="undefined"></i>
+  工具/平台
+</a></li><li class="dropdown-item"><!----> <a href="/categories/db/" class="nav-link"><i class="undefined"></i>
+  db
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/go/" class="nav-link"><i class="undefined"></i>
+  go
+</a></li><li class="dropdown-item"><!----> <a href="/categories/大模型/" class="nav-link"><i class="undefined"></i>
+  大模型
+</a></li><li class="dropdown-item"><!----> <a href="/categories/中间件/" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li><li class="dropdown-item"><!----> <a href="/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      子车轻罗 的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-7dd95ae2></div> <aside class="sidebar" data-v-7dd95ae2><div class="personal-info-wrapper" data-v-1fad0c41 data-v-7dd95ae2><img src="/author.jpeg" alt="author-avatar" class="personal-img" data-v-1fad0c41> <h3 class="name" data-v-1fad0c41>
+    子车轻罗
+  </h3> <div class="num" data-v-1fad0c41><div data-v-1fad0c41><h3 data-v-1fad0c41>64</h3> <h6 data-v-1fad0c41>文章</h6></div> <div data-v-1fad0c41><h3 data-v-1fad0c41>17</h3> <h6 data-v-1fad0c41>标签</h6></div></div> <ul class="social-links" data-v-1fad0c41></ul> <hr data-v-1fad0c41></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="undefined"></i>
+  首页
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont reco-category"></i>
+      分类
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/categories/后端/" class="nav-link"><i class="undefined"></i>
+  后端
+</a></li><li class="dropdown-item"><!----> <a href="/categories/工具/平台/" class="nav-link"><i class="undefined"></i>
+  工具/平台
+</a></li><li class="dropdown-item"><!----> <a href="/categories/db/" class="nav-link"><i class="undefined"></i>
+  db
+</a></li><li class="dropdown-item"><!----> <a href="/categories/运维/" class="nav-link"><i class="undefined"></i>
+  运维
+</a></li><li class="dropdown-item"><!----> <a href="/categories/go/" class="nav-link"><i class="undefined"></i>
+  go
+</a></li><li class="dropdown-item"><!----> <a href="/categories/大模型/" class="nav-link"><i class="undefined"></i>
+  大模型
+</a></li><li class="dropdown-item"><!----> <a href="/categories/中间件/" class="nav-link"><i class="undefined"></i>
+  中间件
+</a></li><li class="dropdown-item"><!----> <a href="/categories/python/" class="nav-link"><i class="undefined"></i>
+  python
+</a></li><li class="dropdown-item"><!----> <a href="/categories/前端/" class="nav-link"><i class="undefined"></i>
+  前端
+</a></li></ul></div></div><div class="nav-item"><a href="/tag/" class="nav-link"><i class="iconfont reco-tag"></i>
+  标签
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="undefined"></i>
+      子车轻罗 的博客
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://juejin.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  掘金
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li><li class="dropdown-item"><!----> <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="undefined"></i>
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></li></ul></div></div> <!----></nav> <ul class="sidebar-links"><li><a href="/article/toolplatform/blog.html" class="sidebar-link">低成本搭建个人博客</a></li><li><a href="/article/toolplatform/vim-go-ide.html" class="sidebar-link">打造自己的vim golang IDE</a></li><li><a href="/article/toolplatform/vscode-plug-in.html" aria-current="page" class="active sidebar-link">vscode 插件</a></li><li><a href="/article/toolplatform/go-dev-ide.html" class="sidebar-link">go 开发环境配置</a></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-59e6cb88 data-v-7dd95ae2><h3 class="title" data-v-59e6cb88>vscode 插件</h3> <!----> <label id="box" class="inputBox" data-v-59e6cb88><input type="password" value="" data-v-59e6cb88> <span data-v-59e6cb88>Konck! Knock!</span> <button data-v-59e6cb88>OK</button></label> <div class="footer" data-v-59e6cb88><span data-v-59e6cb88><i class="iconfont reco-theme" data-v-59e6cb88></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-59e6cb88>vuePress-theme-reco</a></span> <span data-v-59e6cb88><i class="iconfont reco-copyright" data-v-59e6cb88></i> <a data-v-59e6cb88><span data-v-59e6cb88>子车轻罗</span>
+          
+        <!---->
+        2023
+      </a></span></div></div> <div data-v-7dd95ae2><div data-v-7dd95ae2><main class="page"><section style="display:;"><div class="page-title"><h1 class="title">vscode 插件</h1> <div data-v-8a445198><i class="iconfont reco-account" data-v-8a445198><span data-v-8a445198>子车轻罗</span></i> <i class="iconfont reco-date" data-v-8a445198><span data-v-8a445198>2020/3/8</span></i> <!----> <i class="tags iconfont reco-tag" data-v-8a445198><span class="tag-item" data-v-8a445198>vscode</span></i></div></div> <div class="theme-reco-content content__default"><h2 id="ai工具"><a href="#ai工具" class="header-anchor">#</a> AI工具</h2> <h4 id="codeium"><a href="#codeium" class="header-anchor">#</a> <strong>Codeium</strong></h4> <p>代码补全工具，免费，注册即可用。默认都是英文回复。</p> <p>支持70多种语言如 Javascript, Python, Typescript, PHP, Go, Java, C, C++, Rust, Ruby, and more.</p> <p><img src="https://exafunction.github.io/public/demos/g_python_random_gen_with_logo.gif" alt="根据注释生成代码"></p> <p><img src="https://exafunction.github.io/public/demos/g_copilot_sentiment_with_logo.gif" alt="代码补全"></p> <h4 id="chatgpt-gpt-4"><a href="#chatgpt-gpt-4" class="header-anchor">#</a> <strong>ChatGPT GPT-4</strong></h4> <p>代码补全工具，免费，注册可用，相比codeium可以选中一部分代码到对话框，进行提问。</p> <h2 id="前端"><a href="#前端" class="header-anchor">#</a> 前端</h2> <h4 id="auto-rename-tag"><a href="#auto-rename-tag" class="header-anchor">#</a> <strong>Auto Rename Tag</strong></h4> <p>插件：Auto Rename Tag</p> <p>作用：成对符号如&quot;&quot;，删除一个时，自动删除另一个。</p> <h4 id="blockman"><a href="#blockman" class="header-anchor">#</a> <strong>Blockman</strong></h4> <p>插件：Blockman - Highlight Nested Code Blocks</p> <p>作用：高亮当前光标所在的代码段，框出代码段。</p> <p><img src="https://raw.githubusercontent.com/leodevbro/vscode-blockman/main/demo-media/video/main-demo---c2-apng.png" alt="Blockman 效果图"></p> <h4 id="eslint"><a href="#eslint" class="header-anchor">#</a> <strong>ESLint</strong></h4> <p>插件：ESLint</p> <p>作用：使用eslint规范检查代码</p> <h4 id="highlight-matching-tag"><a href="#highlight-matching-tag" class="header-anchor">#</a> <strong>Highlight Matching Tag</strong></h4> <p>插件：Highlight Matching Tag</p> <p>作用：高亮当前选中的标签</p> <p><img src="https://camo.githubusercontent.com/75e3bec0d2c678801236e633b3366172cbbaa83b0776988e6f40e78a67e95150/68747470733a2f2f696d61676573322e696d67626f782e636f6d2f37312f32612f7a49413158437a4b5f6f2e676966" alt="Highlight Matching Tag效果图"></p> <h4 id="html-css-support"><a href="#html-css-support" class="header-anchor">#</a> <strong>HTML CSS Support</strong></h4> <p>插件：HTML CSS Support</p> <p>作用：css属性补全</p> <h4 id="image-preview"><a href="#image-preview" class="header-anchor">#</a> <strong>Image preview</strong></h4> <p>插件：Image preview</p> <p>作用：引用图片是，代码行号左边展示图片的缩略图</p> <h4 id="indent-rainbow"><a href="#indent-rainbow" class="header-anchor">#</a> <strong>indent-rainbow</strong></h4> <p>插件：indent-rainbow</p> <p>作用：使缩进更容易看，展示所有缩进以不同颜色展示</p> <p><img src="https://raw.githubusercontent.com/oderwat/vscode-indent-rainbow/master/assets/example.png" alt="indent-rainbow效果图"></p> <h4 id="indenticator"><a href="#indenticator" class="header-anchor">#</a> <strong>Indenticator</strong></h4> <p>插件：Indenticator</p> <p>作用：使缩进更容易看，展示光标所在位置缩进，个人感觉比上面的更容易看。</p> <h4 id="prettier-code-formatter"><a href="#prettier-code-formatter" class="header-anchor">#</a> <strong>Prettier - Code formatter</strong></h4> <p>插件：Prettier - Code formatter</p> <p>作用：格式化代码</p> <h4 id="stylus"><a href="#stylus" class="header-anchor">#</a> <strong>stylus</strong></h4> <p>插件：stylus</p> <p>作用：为Stylus文件添加语法高亮显示和代码完成。</p> <h4 id="tabout"><a href="#tabout" class="header-anchor">#</a> <strong>TabOut</strong></h4> <p>插件：TabOut</p> <p>作用：当输入&quot;，补全另一个&quot;，使用tab即可向右移动一个位置，跳出包裹</p> <h4 id="vetur"><a href="#vetur" class="header-anchor">#</a> <strong>vetur</strong></h4> <p>插件：TabOut</p> <p>作用：vue代码提示不全</p> <h4 id="vue-helper"><a href="#vue-helper" class="header-anchor">#</a> <strong>vue-helper</strong></h4> <p>插件：vue-helper</p> <p>作用：该插件主要增强了编写vue的能力，并扩展了Element-UI, VUX, IVIEW</p> <h4 id="code-spell-checker"><a href="#code-spell-checker" class="header-anchor">#</a> Code Spell Checker</h4> <p>插件：Code Spell Checker</p> <p>作用：检查单词拼写</p> <h4 id="css-peek"><a href="#css-peek" class="header-anchor">#</a> <strong>CSS Peek</strong></h4> <p>插件：CSS Peek</p> <p>作用：鼠标指向class即可展示关联的css</p> <p><img src="https://raw.githubusercontent.com/pranaygp/vscode-css-peek/master/readme/working.gif" alt="CSS Peek 效果图"></p> <h2 id="后端"><a href="#后端" class="header-anchor">#</a> 后端</h2> <h4 id="go"><a href="#go" class="header-anchor">#</a> <strong>Go</strong></h4> <p>go语言插件</p> <h2 id="基本插件"><a href="#基本插件" class="header-anchor">#</a> 基本插件</h2> <h4 id="chinese"><a href="#chinese" class="header-anchor">#</a> <strong>Chinese</strong></h4> <p>中文插件，vscode转中文。</p> <h4 id="draw-io-integration"><a href="#draw-io-integration" class="header-anchor">#</a> <strong>Draw.io Integration</strong></h4> <p>画图插件，流程图、泳道图</p> <h4 id="gitlens-git-supercharged"><a href="#gitlens-git-supercharged" class="header-anchor">#</a> <strong>GitLens — Git supercharged</strong></h4> <p>git管理，更加方便的管理git，鼠标点击提示修改人及修改时间</p> <h4 id="korofileheader"><a href="#korofileheader" class="header-anchor">#</a> <strong>koroFileHeader</strong></h4> <p>生成文件头部注释插件，4.93版本有bug，保存文件会很卡顿。</p> <h4 id="local-history"><a href="#local-history" class="header-anchor">#</a> <strong>Local History</strong></h4> <p>自动把代码历史版本备份到本地</p> <h4 id="vim"><a href="#vim" class="header-anchor">#</a> <strong>Vim</strong></h4> <p>vim插件，不过有些ctrl的快捷键会和vscode冲突</p> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token comment">// vim 配置</span>
+  <span class="token property">&quot;vim.useCtrlKeys&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;vim.handleKeys&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;&lt;C-a&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-b&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-c&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-d&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-e&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-f&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-g&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-h&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-i&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-j&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-k&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-l&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-m&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-n&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-o&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-p&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-q&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-r&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-s&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-t&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-u&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-v&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-w&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-x&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-y&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;&lt;C-z&gt;&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br></div></div><h4 id="remote系列"><a href="#remote系列" class="header-anchor">#</a> <strong>Remote系列</strong></h4> <p>Remote-SSH</p> <p>Remote-SSH:Editing Configuration Files</p> <p>Remote-Tunnels</p> <p>Remote Development</p> <p>Remote Explorer</p> <p>以上不需要自己安装，使用远程链接服务器进行开发时会自动安装。</p> <p>如果需要跳板机才能链接，可以参考以下配置，会在ssh下建立一个文件，定义好要链接的机器ip、端口，如需跳板机还可以设置proxy</p> <p><em>默认配置</em></p> <div class="language- line-numbers-mode"><pre class="language-text"><code> 配置在 ~/.ssh/config，可以通过git bash看，对应windows路径为C:\Users\${user}\.ssh
+cat config
+Host LLM  #名字，可以通过ssh LLM连接命名为LLM的ssh配置
+  HostName 10.33.5.83  # 连接地址
+  User rd  #用户
+  Port 8222  #默认22，如果不是22需要指定
+
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p><em>通过跳板机中转连接</em></p> <p>ssh：版本在7.4p1及以上；vim /etc/<a href="https://so.csdn.net/so/search?q=ssh&amp;spm=1001.2101.3001.7020" target="_blank" rel="nofollow noopener noreferrer">ssh<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>/sshd_config将AllowTcpForwarding yes #注释去掉，改成 yes</p> <p>vscode：remote-ssh配置里，把remote.SSH.remoteServerListenOnSocket的勾去掉</p> <p>防火墙：要放开</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>Host TargetSever
+    HostName 2.2.2.2
+    User student2
+    ProxyCommand C:\Windows\System32\OpenSSH\ssh.exe -W %h:%p LLM #如通过上面的LLM进行中转
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>如果报错<code>open failed：administratively prohibited：open failed</code> ,或通道关闭就是以上问题。</p> <p>还有另外一种方式，不过堡垒机这种不能装其他命令的是没法用的。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>确定连接方式
+利用nc 首先登录跳板机，输入&quot;nc&quot;
+如果跳板机有nc就可以用这种方式登录
+利用ssh -W 这种方式我没有配置成功，有兴趣请参考别的文章（文末）
+配置ssh config（Windows）
+打开C:/Users/[你的用户名]/.ssh/config（如果没有就新建一个）
+输入：Host [远程服务器别名，随便起] HostName [远程服务器地址] User [远程服务器账户名] Port [远程服务器端口] ProxyCommand ssh.exe -p [跳板机端口] [跳板机地址] nc %h %p
+上一步中的ssh.exe是在windows环境才这样写的，如果要在mac环境配置，只需要去掉.exe换成ssh
+MAC
+ssh config的位置在：~/.ssh/config
+
+其他同上
+
+我的配置文件为例
+Host google_gpu_03  # 随便起
+  HostName 123.123.123.123 # 训练服务器IP
+  User user2  # 训练服务器用户名
+  Port 22
+  ProxyCommand ssh.exe -p 32200 user1@122.122.122.122 nc %h %p  # 跳板机用户名和IP
+vscode 登录
+打开vscode，点击View - Command palette
+点击Remote SSH: Connect to Host
+选择上一步配置的远程服务器别名
+按照提示分别输入跳板机，远程服务器的密码
+第一次连接的时候会花几分钟时间安装vscode server，即使远程服务器没有网络也可以安装成功
+（可选）配置公钥免密登录
+虽然可选，但是大多数人都会这么做，因为不这样做的话每次登录要输入服务器和跳板机的密码，不方便的话就没有远程调试的意义了
+
+配置从windows到跳板机的公钥
+打开powershell，输入ssh-keygen -t rsa
+把id_rsa.pub文件传到跳板机，并在跳板机上运行cat id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+至此，就不用输入跳板机密码了
+
+
+配置从跳板机到远程服务器的公钥
+跳板机输入ssh-keygen -t rsa
+把跳板机的id_rsa.pub文件传到远程服务器，并在远程服务器上运行cat id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+【重要】把你windows的id_rsa.pub，并在远程服务器上运行上述命令
+（也就是说，所有前序机器的id_rsa.pub都要添加到最终机器上。比如说有3台机ABC，其中B是跳板机。那么A的.pub要在B跟C上分别导入一次，B的.pub要在C上导入一次，共3次）
+至此，就不用输入远程服务器密码了
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br></div></div><p><a href="https://zhuanlan.zhihu.com/p/149312534" target="_blank" rel="nofollow noopener noreferrer">参考<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h4 id="wsl"><a href="#wsl" class="header-anchor">#</a> <strong>WSL</strong></h4> <p>使用windows WSL子系统时，链接子系统使用。</p> <h4 id="local-history-2"><a href="#local-history-2" class="header-anchor">#</a> <strong>local History</strong></h4> <p>在本地存储一份文件变更历史，避免还没有提交git时发生意外，注意需要在**.gitignore** 添加<code>.history</code>, 否则会造成提交时文件泛滥，它应该只存在于本地。</p> <h2 id="常用配置"><a href="#常用配置" class="header-anchor">#</a> 常用配置</h2> <div class="language-json line-numbers-mode"><pre class="language-json"><code>  <span class="token property">&quot;terminal.integrated.profiles.windows&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">//新的配置</span>
+    <span class="token property">&quot;MINGW32&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;path&quot;</span><span class="token operator">:</span> <span class="token string">&quot;C:\\Windows\\System32\\cmd.exe&quot;</span><span class="token punctuation">,</span> <span class="token comment">//shell路径</span>
+      <span class="token property">&quot;icon&quot;</span><span class="token operator">:</span> <span class="token string">&quot;terminal-cmd&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;args&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;-defterm&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-mingw32&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-no-start&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;-here&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;env&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">&quot;CHERE_INVOKING&quot;</span><span class="token operator">:</span> <span class="token string">&quot;1&quot;</span><span class="token punctuation">,</span>
+        <span class="token property">&quot;MSYSTEM&quot;</span><span class="token operator">:</span> <span class="token string">&quot;MINGW32&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;python.pythonPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;python&quot;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;editor.formatOnPaste&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;editor.formatOnType&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;editor.linkedEditing&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;editor.codeActionsOnSave&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  
+    <span class="token property">&quot;source.fixAll.eslint&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;source.organizeImports&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;editor.wordWrap&quot;</span><span class="token operator">:</span> <span class="token string">&quot;off&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;editor.fontLigatures&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;editor.tokenColorCustomizations&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;editor.gotoLocation.multipleDefinitions&quot;</span><span class="token operator">:</span> <span class="token string">&quot;goto&quot;</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br></div></div><p>前端配置</p> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token comment">// 前端配置</span>
+  <span class="token property">&quot;emmet.includeLanguages&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;wxml&quot;</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue&quot;</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;vue-html&quot;</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;json.schemas&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;beautify.language&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;js&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;type&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;javascript&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;json&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;jsonc&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;filename&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;.jshintrc&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;.jsbeautifyrc&quot;</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;css&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;css&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;less&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;scss&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;html&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;htm&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;html&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token property">&quot;[vue]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;octref.vetur&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;[html]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vscode.html-language-features&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;vetur.grammar.customBlocks&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;docs&quot;</span><span class="token operator">:</span> <span class="token string">&quot;md&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;i18n&quot;</span><span class="token operator">:</span> <span class="token string">&quot;json&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;eslint.run&quot;</span><span class="token operator">:</span> <span class="token string">&quot;onSave&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;eslint.options&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;extensions&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;.js&quot;</span><span class="token punctuation">,</span> <span class="token string">&quot;.vue&quot;</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// 不显示eslint校验的警告信息</span>
+  <span class="token property">&quot;eslint.quiet&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;eslint.validate&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;typescript&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;autoFix&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;javascript&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;javascriptreact&quot;</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vue&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;autoFix&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      <span class="token property">&quot;language&quot;</span><span class="token operator">:</span> <span class="token string">&quot;html&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;autoFix&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;vue&quot;</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+
+  <span class="token property">&quot;vetur.format.defaultFormatterOptions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;prettier&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token comment">// 使用单引号</span>
+      <span class="token property">&quot;semi&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;js-beautify-html&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;wrap_attributes&quot;</span><span class="token operator">:</span> <span class="token string">&quot;force-expand-multiline&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;wrap_line_length&quot;</span><span class="token operator">:</span> <span class="token number">250</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;wrap_attributes&quot;</span><span class="token operator">:</span> <span class="token string">&quot;auto&quot;</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;end_with_newline&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;prettyhtml&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;printWidth&quot;</span><span class="token operator">:</span> <span class="token number">100</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;singleQuote&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;wrapAttributes&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      <span class="token property">&quot;sortAttributes&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token comment">// &quot;files.insertFinalNewline&quot;: true,</span>
+  <span class="token property">&quot;vetur.format.defaultFormatter.html&quot;</span><span class="token operator">:</span> <span class="token string">&quot;js-beautify-html&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;[javascript]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// &quot;editor.defaultFormatter&quot;: &quot;dbaeumer.vscode-eslint&quot;</span>
+    <span class="token property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dbaeumer.vscode-eslint&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;[json]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;editor.quickSuggestions&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;strings&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;editor.suggest.insertMode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;replace&quot;</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token property">&quot;eslint.trace.server&quot;</span><span class="token operator">:</span> <span class="token string">&quot;off&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;javascript.format.insertSpaceBeforeFunctionParenthesis&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;vetur.format.defaultFormatter.ts&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vscode-typescript&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;vetur.format.defaultFormatter.js&quot;</span><span class="token operator">:</span> <span class="token string">&quot;vscode-typescript&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;eslint.format.enable&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;eslint.lintTask.enable&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;eslint.alwaysShowStatus&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;workbench.editorAssociations&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;*.ipynb&quot;</span><span class="token operator">:</span> <span class="token string">&quot;jupyter.notebook.ipynb&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token property">&quot;security.workspace.trust.untrustedFiles&quot;</span><span class="token operator">:</span> <span class="token string">&quot;open&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;[javascript]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;dbaeumer.vscode-eslint&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;[javascript]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;editor.defaultFormatter&quot;</span><span class="token operator">:</span> <span class="token string">&quot;esbenp.prettier-vscode&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br><span class="line-number">46</span><br><span class="line-number">47</span><br><span class="line-number">48</span><br><span class="line-number">49</span><br><span class="line-number">50</span><br><span class="line-number">51</span><br><span class="line-number">52</span><br><span class="line-number">53</span><br><span class="line-number">54</span><br><span class="line-number">55</span><br><span class="line-number">56</span><br><span class="line-number">57</span><br><span class="line-number">58</span><br><span class="line-number">59</span><br><span class="line-number">60</span><br><span class="line-number">61</span><br><span class="line-number">62</span><br><span class="line-number">63</span><br><span class="line-number">64</span><br><span class="line-number">65</span><br><span class="line-number">66</span><br><span class="line-number">67</span><br><span class="line-number">68</span><br><span class="line-number">69</span><br><span class="line-number">70</span><br><span class="line-number">71</span><br><span class="line-number">72</span><br><span class="line-number">73</span><br><span class="line-number">74</span><br><span class="line-number">75</span><br><span class="line-number">76</span><br><span class="line-number">77</span><br><span class="line-number">78</span><br><span class="line-number">79</span><br><span class="line-number">80</span><br><span class="line-number">81</span><br><span class="line-number">82</span><br><span class="line-number">83</span><br><span class="line-number">84</span><br><span class="line-number">85</span><br><span class="line-number">86</span><br><span class="line-number">87</span><br><span class="line-number">88</span><br><span class="line-number">89</span><br><span class="line-number">90</span><br><span class="line-number">91</span><br><span class="line-number">92</span><br><span class="line-number">93</span><br><span class="line-number">94</span><br><span class="line-number">95</span><br><span class="line-number">96</span><br><span class="line-number">97</span><br><span class="line-number">98</span><br><span class="line-number">99</span><br><span class="line-number">100</span><br><span class="line-number">101</span><br></div></div><p>python配置</p> <div class="language-json line-numbers-mode"><pre class="language-json"><code>  <span class="token comment">// python 配置</span>
+  <span class="token property">&quot;python.linting.flake8Enabled&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token comment">// &quot;python.linting.blackEnabled&quot;: true,</span>
+  <span class="token property">&quot;python.linting.flake8Args&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;--max--line-length=248&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;python.linting.pylintEnabled&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;workbench.startupEditor&quot;</span><span class="token operator">:</span> <span class="token string">&quot;newUntitledFile&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;python.linting.enabled&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;python.formatting.provider&quot;</span><span class="token operator">:</span> <span class="token string">&quot;yapf&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;python.formatting.blackArgs&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">&quot;--skip-string-normalization&quot;</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;[python]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;editor.formatOnType&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;python.condaPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/Users/yangxiaokang/micromamba/condabin/conda&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;cSpell.languageSettings&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;python.pythonPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/usr/bin/python3&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;python.defaultInterpreterPath&quot;</span><span class="token operator">:</span> <span class="token string">&quot;/usr/local/bin/python3&quot;</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>go配置</p> <div class="language-json line-numbers-mode"><pre class="language-json"><code><span class="token comment">// golang 配置</span>
+  <span class="token property">&quot;go.formatTool&quot;</span><span class="token operator">:</span> <span class="token string">&quot;goimports&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.useLanguageServer&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.docsTool&quot;</span><span class="token operator">:</span> <span class="token string">&quot;guru&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.toolsEnvVars&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">//&quot;GOFLAGS&quot;: &quot;-mod=vendor&quot;</span>
+    <span class="token property">&quot;GOFLAGS&quot;</span><span class="token operator">:</span> <span class="token string">&quot;-mod=mod&quot;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.inferGopath&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.formatTool&quot;</span><span class="token operator">:</span> <span class="token string">&quot;goreturns&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">//自动完成未导入的包</span>
+  <span class="token property">&quot;go.autocompleteUnimportedPackages&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.gocodePackageLookupMode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;go&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.gotoSymbol.includeImports&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.docsTool&quot;</span><span class="token operator">:</span> <span class="token string">&quot;gogetdoc&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.useCodeSnippetsOnFunctionSuggest&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.useCodeSnippetsOnFunctionSuggestWithoutType&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.useLanguageServer&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;[go]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;editor.insertSpaces&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;editor.codeActionsOnSave&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;source.organizeImports&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span> <span class="token comment">// Optional: Disable snippets, as they conflict with completion ranking.    &quot;editor.snippetSuggestions&quot;: &quot;none&quot;,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;[go.mod]&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">&quot;editor.formatOnSave&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token property">&quot;editor.codeActionsOnSave&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">&quot;source.organizeImports&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.trace.server&quot;</span><span class="token operator">:</span> <span class="token string">&quot;verbose&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;gopls&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Add parameter placeholders when completing a function.</span>
+    <span class="token property">&quot;usePlaceholders&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token comment">// If true, enable additional analyses with staticcheck.</span>
+    <span class="token comment">// Warning: This will significantly increase memory usage.   &quot;staticcheck&quot;: false,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.languageServerFlags&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;-remote=auto&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;-logfile=auto&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;-debug=:0&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;-rpc.trace&quot;</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;go.toolsManagement.autoUpdate&quot;</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><p>其他配置</p> <div class="language-json line-numbers-mode"><pre class="language-json"><code>  <span class="token comment">// 插件配置</span>
+  <span class="token property">&quot;git.confirmSync&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;workbench.editor.untitled.hint&quot;</span><span class="token operator">:</span> <span class="token string">&quot;hidden&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;hediet.vscode-drawio.resizeImages&quot;</span><span class="token operator">:</span> <span class="token null keyword">null</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;files.autoSave&quot;</span><span class="token operator">:</span> <span class="token string">&quot;afterDelay&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;gitlens.currentLine.dateFormat&quot;</span><span class="token operator">:</span> <span class="token string">&quot;&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// indent-rainbow 使缩进更明显</span>
+  <span class="token comment">// Using the light mode</span>
+  <span class="token property">&quot;indentRainbow.indicatorStyle&quot;</span><span class="token operator">:</span> <span class="token string">&quot;light&quot;</span><span class="token punctuation">,</span>
+  <span class="token comment">// we use a simple 1 pixel wide line</span>
+  <span class="token property">&quot;indentRainbow.lightIndicatorStyleLineWidth&quot;</span><span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;indentRainbow.colors&quot;</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">&quot;rgba(255,255,64,0.3)&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;rgba(127,255,127,0.3)&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;rgba(255,127,255,0.3)&quot;</span><span class="token punctuation">,</span>
+    <span class="token string">&quot;rgba(79,236,236,0.3)&quot;</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;update.mode&quot;</span><span class="token operator">:</span> <span class="token string">&quot;none&quot;</span><span class="token punctuation">,</span>
+  <span class="token property">&quot;extensions.autoUpdate&quot;</span><span class="token operator">:</span> <span class="token boolean">false</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br></div></div><h2 id="快捷键"><a href="#快捷键" class="header-anchor">#</a> 快捷键</h2> <ul><li><p>跳转函数定义后如何回到之前位置</p> <p>Windows: Alt + '-' （有的是 Alt + ‘←’）</p> <p><a href="https://so.csdn.net/so/search?q=Ubuntu&amp;spm=1001.2101.3001.7020" target="_blank" rel="nofollow noopener noreferrer">Ubuntu<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a>: Ctrl + Alt + '-'</p> <p>Mac: control + '-'</p></li></ul></div></section> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">2023/8/5</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev"><a href="/article/toolplatform/vim-go-ide.html" class="prev">
+          打造自己的vim golang IDE
+        </a></span> <span class="next"><a href="/article/toolplatform/go-dev-ide.html">
+          go 开发环境配置
+        </a></span></p></div> <div class="comments-wrapper"><!----></div></main></div> <!----></div> <ul class="sub-sidebar sub-sidebar-wrapper" style="width:12rem;" data-v-b57cc07c data-v-7dd95ae2><li class="level-2" data-v-b57cc07c><a href="/article/toolplatform/vscode-plug-in.html#ai工具" class="sidebar-link reco-side-ai工具" data-v-b57cc07c>AI工具</a></li><li class="level-2" data-v-b57cc07c><a href="/article/toolplatform/vscode-plug-in.html#前端" class="sidebar-link reco-side-前端" data-v-b57cc07c>前端</a></li><li class="level-2" data-v-b57cc07c><a href="/article/toolplatform/vscode-plug-in.html#后端" class="sidebar-link reco-side-后端" data-v-b57cc07c>后端</a></li><li class="level-2" data-v-b57cc07c><a href="/article/toolplatform/vscode-plug-in.html#基本插件" class="sidebar-link reco-side-基本插件" data-v-b57cc07c>基本插件</a></li><li class="level-2" data-v-b57cc07c><a href="/article/toolplatform/vscode-plug-in.html#常用配置" class="sidebar-link reco-side-常用配置" data-v-b57cc07c>常用配置</a></li><li class="level-2" data-v-b57cc07c><a href="/article/toolplatform/vscode-plug-in.html#快捷键" class="sidebar-link reco-side-快捷键" data-v-b57cc07c>快捷键</a></li></ul></div></div></div><div class="global-ui"><div class="reco-bgm-panel" data-v-b1d3339e><audio id="bgm" src="/bgm/只爱西经-林一.mp3" data-v-b1d3339e></audio> <div class="reco-float-box" style="bottom:20px;z-index:999999;display:none;" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><img src="https://img.18183.com/uploads/allimg/210927/379-21092GG645.jpg@!18183" data-v-b1d3339e></div> <div class="reco-bgm-box" style="left:10px;bottom:10px;z-index:999999;" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><div class="reco-bgm-cover" style="background-image:url(https://img.18183.com/uploads/allimg/210927/379-21092GG645.jpg@!18183);" data-v-b1d3339e><div class="mini-operation" style="display:none;" data-v-b1d3339e><i class="reco-bgm reco-bgm-pause" style="display:none;" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-play" style="display:none;" data-v-b1d3339e></i></div> <div class="falut-message" style="display:none;" data-v-b1d3339e>
+          播放失败
+        </div></div> <div class="reco-bgm-info" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><div class="info-box" data-v-b1d3339e><i class="reco-bgm reco-bgm-music music" data-v-b1d3339e></i>只爱西经</div> <div class="info-box" data-v-b1d3339e><i class="reco-bgm reco-bgm-artist" data-v-b1d3339e></i>林一</div> <div class="reco-bgm-progress" data-v-b1d3339e><div class="progress-bar" data-v-b1d3339e><div class="bar" data-v-b1d3339e></div></div></div> <div class="reco-bgm-operation" data-v-b1d3339e><i class="reco-bgm reco-bgm-last last" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-pause pause" style="display:none;" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-play play" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-next next" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-volume1 volume" data-v-b1d3339e></i> <i class="reco-bgm reco-bgm-mute mute" style="display:none;" data-v-b1d3339e></i> <div class="volume-bar" data-v-b1d3339e><div class="bar" data-v-b1d3339e></div></div></div></div> <div class="reco-bgm-left-box" data-v-b1d3339e data-v-41bcba48 data-v-b1d3339e><i class="reco-bgm reco-bgm-left" data-v-b1d3339e></i></div></div></div><div class="Sakura" data-v-248d85d6><canvas id="canvas_sakura" style="z-index:-1;" data-v-248d85d6></canvas></div><!----><div class="kanbanniang" data-v-5775ee02><div class="banniang-container" style="display:;" data-v-5775ee02><div class="messageBox" style="right:68px;bottom:190px;display:none;" data-v-5775ee02>
+      欢迎来到 子车轻罗的博客
+    </div> <div class="operation" style="left:10px;bottom:65px;display:;" data-v-5775ee02><i class="kbnfont kbn-ban-home ban-home" data-v-5775ee02></i> <i class="kbnfont kbn-ban-message message" data-v-5775ee02></i> <i class="kbnfont kbn-ban-close close" data-v-5775ee02></i> <a target="_blank" href="https://vuepress-theme-reco.recoluan.com/views/plugins/kanbanniang.html" data-v-5775ee02><i class="kbnfont kbn-ban-info info" data-v-5775ee02></i></a> <i class="kbnfont kbn-ban-theme skin" style="display:;" data-v-5775ee02></i></div> <canvas id="banniang" width="150" height="300" class="live2d" style="left:70px;bottom:-20px;opacity:0.9;" data-v-5775ee02></canvas></div> <div class="showBanNiang" style="display:none;" data-v-5775ee02>
+    看板娘
+  </div></div><div id="goTop" class="hide-cat" data-v-bf92849a></div></div></div>
+    <script src="/assets/js/app.d40b87a5.js" defer></script><script src="/assets/js/3.6d6f7fe5.js" defer></script><script src="/assets/js/1.82139cbe.js" defer></script><script src="/assets/js/54.e8ee9e30.js" defer></script>
+  </body>
+</html>
